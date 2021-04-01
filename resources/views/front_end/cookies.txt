@@ -1,0 +1,4 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+apexbay.com.ng	TRUE	/	FALSE	1999999999	PHPSESSID	4bc5f5704ffe814c53df224e34879491
+
