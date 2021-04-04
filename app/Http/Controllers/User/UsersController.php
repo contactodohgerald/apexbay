@@ -77,6 +77,14 @@ class UsersController extends Controller
         ];
      
         return view('front_end.profile', $view);
+    } 
+    
+    
+    function editUserProfilePage(){
+
+        $users = Auth::user();
+     
+        return view('auth.edit_user_profile_page', ['users'=>$users]);
     }
 
     public function updateUserImage(Request $request){

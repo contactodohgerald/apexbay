@@ -36,13 +36,14 @@
             controlNav: "thumbnails"
         });
 
-        $('.states').select2({
-            placeholder: 'Select an option'
-        });
+        // $('.states').select2({
+        //     placeholder: 'Select an option'
+        // });
 
-        $('.categories').select2({
-            placeholder: 'Select an option'
-        });
+        // $('.categories').select2({
+        //     placeholder: 'Select an option'
+        // });
+    
     })
 
     var links = [

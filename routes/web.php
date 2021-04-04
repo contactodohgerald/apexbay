@@ -9,7 +9,9 @@ use App\Http\Controllers\Ad\ProductCommentController;
 use App\Http\Controllers\User\UsersController; 
 use App\Http\Controllers\User\UserControllerHandler;
 use App\Http\Controllers\CVs\CVsController;    
+use App\Http\Controllers\CVs\CVControllerHandler;    
 use App\Http\Controllers\Payment\PaymentController;  
+use App\Http\Controllers\Result\SearchQueryController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +64,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/post-cv-comment/{unique_id?}', [ProductCommentController::class, 'storeCvComment'])->name('post-cv-comment')->middleware('auth');
 
     Route::get('/profile', [UsersController::class, 'profilePage'])->name('profile')->middleware('auth');   
+    Route::get('/edit-user-profile', [UsersController::class, 'editUserProfilePage'])->name('edit-user-profile')->middleware('auth');   
 
     Route::post('/update-image', [UsersController::class, 'updateUserImage'])->name('update-image')->middleware('auth');   
 
@@ -69,24 +72,36 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::post('/store-cv', [CVsController::class, 'storeCv'])->name('store-cv')->middleware('auth'); 
 
+    Route::get('/search-query', [SearchQueryController::class, 'searchThroughTable'])->name('search-query');   
+    Route::post('/search-query', [SearchQueryController::class, 'searchThroughTable'])->name('search-query');   
     
 }); 
 
 //back-end
 Route::group(['middleware' => 'web'], function () {
     
+    Route::get('/profile-page', [UserControllerHandler::class, 'profilePage'])->name('profile-page');  
+    Route::get('/admin-profile-page/{unique_id?}', [UserControllerHandler::class, 'adminProfilePage'])->name('admin-profile-page');  
+    Route::get('/edit-profile', [UserControllerHandler::class, 'editProfilePage'])->name('edit-profile');  
     Route::get('/index', [UserControllerHandler::class, 'dashboardInterface'])->name('index');  
     Route::get('/create-category', [AdController::class, 'createAdCategory'])->name('create-category');  
+    Route::get('/create-cv-category', [CVControllerHandler::class, 'createCvCategory'])->name('create-cv-category');  
     Route::get('/list-category', [AdController::class, 'allAdCategory'])->name('list-category'); 
+    Route::get('/list-cv-category', [CVControllerHandler::class, 'allCvCategory'])->name('list-cv-category'); 
     Route::get('/confirm-ads', [AdController::class, 'confirmAdsInterface'])->name('confirm-ads'); 
     Route::get('/edit-category/{unique_id?}', [AdController::class, 'singleAdCategory'])->name('edit-category');
+    Route::get('/edit-cv-category/{unique_id?}', [CVControllerHandler::class, 'singleCvCategory'])->name('edit-cv-category');
     Route::post('/store-category', [AdController::class, 'storeAdCategory'])->name('store-category');
+    Route::post('/store-cv-category', [CVControllerHandler::class, 'storeCvCategory'])->name('store-cv-category');
     Route::post('/update-category/{unique_id?}', [AdController::class, 'updateAdCategory'])->name('update-category');
+    Route::post('/update-cv-category/{unique_id?}', [CVControllerHandler::class, 'updateCvCategory'])->name('update-cv-category');
 
     Route::get('/add-admin', [UserControllerHandler::class, 'createAdminInterface'])->name('add-admin');  
     Route::post('/store-admin', [UserControllerHandler::class, 'createAdminAccount'])->name('store-admin');  
     Route::get('/admin-list', [UserControllerHandler::class, 'adminLists'])->name('admin-list');  
     Route::get('/user-list', [UserControllerHandler::class, 'userLists'])->name('user-list'); 
+    Route::post('/update-profile', [UserControllerHandler::class, 'updateAccount'])->name('update-profile'); 
+    Route::post('/update-password', [UserControllerHandler::class, 'userPasswordUpdate'])->name('update-password'); 
 
     Route::get('/comfirm-cvs', [CVsController::class, 'viewCvInterface'])->name('comfirm-cvs'); 
 

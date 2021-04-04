@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Ad\AdController;  
 use App\Http\Controllers\CVs\CVsController;  
 use App\Http\Controllers\User\UserControllerHandler; 
-use App\Http\Controllers\Subscription\SubscribeController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +22,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/comfirmAdsStatus', [AdController::class, 'comfirmAdsStatus'])->name('comfirmAdsStatus'); 
+
 Route::post('/deleteAdsStatus', [AdController::class, 'deleteAdsStatus'])->name('deleteAdsStatus');  
 
 Route::post('/comfirmCvsStatus', [CVsController::class, 'comfirmCvsStatus'])->name('comfirmCvsStatus');  
+
 Route::post('/deleteCvsStatus', [CVsController::class, 'deleteCvsStatus'])->name('deleteCvsStatus');
 
 Route::post('/deleteUsers', [UserControllerHandler::class, 'deleteUsers'])->name('deleteUsers');   
 
-Route::post('/deleteTransaction', [SubscribeController::class, 'deleteTransaction'])->name('deleteTransaction');   
+Route::post('/deleteTransaction', [SubscribeController::class, 'deleteTransaction'])->name('deleteTransaction');  
 

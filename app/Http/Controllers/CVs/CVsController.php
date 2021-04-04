@@ -186,35 +186,12 @@ class CVsController extends Controller
 
     //full_name gender marital_status age work_experience job_type studying_status education skills language certification qualifications native phone_number whatsapp_phone telegram_username price1 price2 additional_details cover_image
 
-    protected function Validator($request){
-
-        $this->validator = Validator::make($request->all(), [
-            'full_name' => 'required',
-            'gender' => 'required',
-            'marital_status' => 'required',
-            'age' => 'required',
-            'work_experience' => 'required',
-            'studying_status' => 'required',
-            'education' => 'required',
-            'skills' => 'required',
-            'language' => 'required',
-            'certification' => 'required',
-            'qualifications' => 'required',
-            'native' => 'required',
-            'phone_number' => 'required',
-            'whatsapp_phone' => 'required',
-            'price1' => 'required',
-            'price2' => 'required',
-        ]);
-    }
-
     public function storeCv(Request $request){
         $data = $request->all();
 
         $user = Auth::user();
         
         try {
-            $this->Validator($request); //validate 
             
             if ($request->hasFile('cover_image')) {
 
@@ -225,6 +202,8 @@ class CVsController extends Controller
                 $cover_image = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
                 $file->storeAs('public/cover_image', $cover_image);
 
+            }else{
+                $cover_image = 'avater.png';
             }
 
             $cvs = new Cv();
@@ -233,6 +212,7 @@ class CVsController extends Controller
             
             $cvs->unique_id = $unique_id;
             $cvs->user_unique_id = $user->unique_id;
+            $cvs->cv_category_unique_id = $data['cv-categories'];
             $cvs->full_name = $data['full_name']; 
             $cvs->gender  = $data['gender'];
             $cvs->marital_status = $data['marital_status'];

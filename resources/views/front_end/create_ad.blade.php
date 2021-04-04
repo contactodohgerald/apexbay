@@ -36,19 +36,7 @@
                         <!-- ============================================================== -->
                         <!-- Bread crumb and right sidebar toggle -->
                         <!-- ============================================================== -->
-                        <div class="row page-titles">
-                            <div class="form-group center-search">
-                                <div class="input-group mb-3 custom-search-height">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"><i class="ti-search"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control custom-search-height" placeholder="I am looking for... search text here" aria-label="Username" aria-describedby="basic-addon1">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text"><i class="ti-list"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>                
+                        @include('front_end.search')     
                         <!-- ============================================================== -->
                         <!-- End Bread crumb and right sidebar toggle -->
                         <!-- ============================================================== -->
@@ -73,7 +61,7 @@
                                             <div class="card-body p-l-3 p-r-3">
                                                 <div class="m-2">
                                                     <h2 class="text-center">
-                                                        <b>You are about to Post a Product / Service</b>
+                                                        <b>Post Product or Service</b>
                                                     </h2>
                                                 </div>
                                                 <div class="row">
@@ -83,28 +71,29 @@
                                                             <div class="_sin89lio">
                                                                 <div class="container">
                                                                     <div class="form-group">
-                                                                        <label for="product_name">Name / Title of product or service <span class="text-danger">*</span></label>
-                                                                        <input type="text" class="form-control" name="product_name" required id="product_name" placeholder="Product / Service Name">
+                                                                        <label for="product_name">Name of product / service</label>
+                                                                        <input type="text" class="form-control" name="product_name" id="product_name" placeholder="Name of product / service">
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="description">Describe this resource <span class="text-danger">*</span></label>
-                                                                        <textarea name="description" class="form-control" required id="description" rows="6" placeholder="Describe this resource "></textarea>
+                                                                        <label for="description">Describe product / service </label>
+                                                                        <textarea name="description" class="form-control" id="description" rows="6" placeholder="Describe product / service "></textarea>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="website_site">(Optional) Website Link : Link to your site or social media</label>
-                                                                        <input type="text" class="form-control" name="website_site" id="website_site" placeholder="(Optional) Website Link : Link to your site">
+                                                                        <label for="website_site">Website Link : Link to your site or social media</label>
+                                                                        <input type="text" class="form-control" name="website_site" id="website_site" placeholder="Website Link : Link to your site">
                                                                     </div>
                                                                     <fieldset>
                                                                         <legend>Target Audience:</legend>
                                                                         <div class="form-group">
                                                                             <label for="country">What Country?</label>
-                                                                            <input type="text" class="form-control" required id="country" value="Nigeria"  name="country" placeholder="Country" readonly>
+                                                                            <input type="text" class="form-control" id="country" value="Nigeria"  name="country" placeholder="Country" readonly>
                                                                         </div>
                     
                                                                         <div class="form-group">
-                                                                            <label for="state">State? State / Region</label>
-                                                                            <select class="form-control states" required name="state[]" id="state" multiple>
+                                                                            <label for="state">State? State / Region </label>
+                                                                            <select class="form-control states" name="state" id="state">
                                                                                 @if(count($states) > 0)
+                                                                                    <option value="">Please Select</option>
                                                                                     @foreach($states as $kk => $each_state)
                                                                                     <option value="{{$each_state}}">{{$each_state}}</option>
                                                                                     @endforeach
@@ -113,37 +102,38 @@
                                                                         </div>
                                                                     </fieldset>
                                                                     <div class="form-group">
-                                                                        <label for="physical_address">Physical Address <small>(optional)</small> </label>
-                                                                        <input type="text" class="form-control" name="physical_address" id="physical_address" placeholder="(Optional) Address">
+                                                                        <label for="physical_address">Physical Address</label>
+                                                                        <input type="text" class="form-control" name="physical_address" id="physical_address" placeholder="Address">
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="phone_number">Business Phone number (Calls)</label>
-                                                                        <input type="text" class="form-control" required id="phone_number" name="phone_number" placeholder="Phone Number">
+                                                                        <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number">
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="whatsapp_phone">WhatsApp Line</label>
-                                                                        <input type="text" class="form-control" required id="whatsapp_phone" name="whatsapp_phone" placeholder="Whatsapp phone number">
+                                                                        <input type="text" class="form-control" id="whatsapp_phone" name="whatsapp_phone" placeholder="Whatsapp phone number">
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="telegram_username">Telegram Username (Optional)</label>
-                                                                        <input type="text" class="form-control" id="telegram_username" name="telegram_username" placeholder="(Optional) Telegram Username">
+                                                                        <label for="telegram_username">Telegram Username</label>
+                                                                        <input type="text" class="form-control" id="telegram_username" name="telegram_username" placeholder="Telegram Username">
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="physical-address">Price / Value of Product or service</label>
                                                                         <div class="input-group mb-2">
                                                                             <div class="input-group-prepend">
-                                                                                <select name="currency" required class="form-control browser-default">
+                                                                                <select name="currency" class="form-control browser-default">
                                                                                     <option selected="selected">NGN</option>
                                                                                 </select>
                                                                             </div> 
-                                                                            <input type="number" id="price" name="price" value="0" placeholder="Price / Value of Product or service" required="required" class="form-control browser-default"> 
+                                                                            <input type="number" id="price" name="price" value="0" placeholder="Price / Value of Product or service" class="form-control browser-default"> 
                                                                             <div class="input-group-append"></div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="categories">Ad Categories <span class="text-danger">*</span></label>
-                                                                        <select class="form-control categories" required id="categories" name="categories[]" multiple>
+                                                                        <select class="form-control categories" id="categories" name="categories">
                                                                             @if(count($adCategory) > 0)
+                                                                                <option value="">Please Select</option>
                                                                                 @foreach($adCategory as $k => $each_ad_category)
                                                                                 <option value="{{$each_ad_category->unique_id}}">{{$each_ad_category->ad_category_title}}</option>
                                                                                 @endforeach
@@ -168,7 +158,7 @@
                                             <div class="card-body p-l-3 p-r-3">
                                                 <div class="m-2">
                                                     <h2 class="text-center">
-                                                        <b>You are about to Post a CV</b>
+                                                        <b> Post Application / CV</b>
                                                     </h2>
                                                 </div>
                                                 <div class="row">
@@ -180,14 +170,14 @@
                                                                     <div class="row">
                                                                         <div class="col-lg-12">
                                                                             <div class="form-group">
-                                                                                <label for="full_name">Full Name <span class="text-danger">*</span></label>
-                                                                                <input type="text" class="form-control" name="full_name" required id="full_name" placeholder="Full Name">
+                                                                                <label for="full_name">Full Name </label>
+                                                                                <input type="text" class="form-control" name="full_name" id="full_name" placeholder="Full Name">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-lg-6">
                                                                             <div class="form-group">
-                                                                                <label for="gender">Gender <span class="text-danger">*</span></label>
-                                                                                <select name="gender" id="gender" class="form-control" required>
+                                                                                <label for="gender">Gender </label>
+                                                                                <select name="gender" id="gender" class="form-control">
                                                                                     <option value="">Please Select</option>
                                                                                     <option value="male">Male</option>
                                                                                     <option value="female">Female</option>
@@ -197,8 +187,8 @@
 
                                                                         <div class="col-lg-6">
                                                                             <div class="form-group">
-                                                                                <label for="marital_status">Marital Status <span class="text-danger">*</span></label>
-                                                                                <select name="marital_status" id="marital_status" class="form-control" required>
+                                                                                <label for="marital_status">Marital Status </label>
+                                                                                <select name="marital_status" id="marital_status" class="form-control" >
                                                                                     <option value="">Please Select</option>
                                                                                     <option value="single">Single</option>
                                                                                     <option value="married">Married</option>
@@ -209,22 +199,22 @@
 
                                                                         <div class="col-lg-6">
                                                                             <div class="form-group">
-                                                                                <label for="age">Age<span class="text-danger">*</span></label>
-                                                                                <input type="number" class="form-control" name="age" required id="age" placeholder="Age">
+                                                                                <label for="age">Age</label>
+                                                                                <input type="number" class="form-control" name="age" id="age" placeholder="Age">
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="col-lg-6">
                                                                             <div class="form-group">
-                                                                                <label for="work_experience">Working Experience<span class="text-danger">*</span></label>
-                                                                                <input type="number" class="form-control" name="work_experience" required id="work_experience" placeholder="Working Experience">
+                                                                                <label for="work_experience">Working Experience</label>
+                                                                                <input type="number" class="form-control" name="work_experience" id="work_experience" placeholder="Working Experience">
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="col-lg-6">
                                                                             <div class="form-group">
-                                                                                <label for="job_type">Job Type <span class="text-danger">*</span></label>
-                                                                                <select name="job_type" id="job_type" class="form-control" required>
+                                                                                <label for="job_type">Job Type </label>
+                                                                                <select name="job_type" id="job_type" class="form-control">
                                                                                     <option value="">Please Select</option>
                                                                                     <option value="full_time">Full Time</option>
                                                                                     <option value="part_time">Part Time</option>
@@ -234,8 +224,8 @@
 
                                                                         <div class="col-lg-6">
                                                                             <div class="form-group">
-                                                                                <label for="studying_status">Still Studying? <span class="text-danger">*</span></label>
-                                                                                <select name="studying_status" id="studying_status" class="form-control" required>
+                                                                                <label for="studying_status">Still Studying?</label>
+                                                                                <select name="studying_status" id="studying_status" class="form-control">
                                                                                     <option value="">Please Select</option>
                                                                                     <option value="yes">Yes</option>
                                                                                     <option value="no">No</option>
@@ -245,36 +235,36 @@
 
                                                                         <div class="col-lg-12">
                                                                             <div class="form-group">
-                                                                                <label for="education">Eduction <span class="text-danger">*</span></label>
-                                                                                <input type="text" class="form-control" name="education" id="education" placeholder="Eduction (E.g: what school you attended)" required>
+                                                                                <label for="education">Eduction</label>
+                                                                                <input type="text" class="form-control" name="education" id="education" placeholder="Eduction (E.g: what school you attended)">
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="col-lg-12">
                                                                             <div class="form-group">
-                                                                                <label for="education">Skills <span class="text-danger">*</span> <small>(seprate each skills with a comma)</small></label>
-                                                                                <input type="text" class="form-control" name="skills" id="skills" placeholder="Skills" required>
+                                                                                <label for="education">Skills <small>(seprate each skills with a comma)</small></label>
+                                                                                <input type="text" class="form-control" name="skills" id="skills" placeholder="Skills">
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="col-lg-12">
                                                                             <div class="form-group">
-                                                                                <label for="language">Languages <span class="text-danger">*</span> <small>(seprate each languages with a comma)</small></label>
-                                                                                <input type="text" class="form-control" name="language" id="language" placeholder="Languages" required>
+                                                                                <label for="language">Languages <small>(seprate each languages with a comma)</small></label>
+                                                                                <input type="text" class="form-control" name="language" id="language" placeholder="Languages">
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="col-lg-12">
                                                                             <div class="form-group">
-                                                                                <label for="certification">Certifications <span class="text-danger">*</span></label>
-                                                                                <input type="text" class="form-control" name="certification" id="certification" placeholder="Certifications" required>
+                                                                                <label for="certification">Certifications</label>
+                                                                                <input type="text" class="form-control" name="certification" id="certification" placeholder="Certifications">
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="col-lg-6">
                                                                             <div class="form-group">
-                                                                                <label for="qualifications">Highest Qualification<span class="text-danger">*</span></label>
-                                                                                <select name="qualifications" id="qualifications" class="form-control" required>
+                                                                                <label for="qualifications">Highest Qualification </label>
+                                                                                <select name="qualifications" id="qualifications" class="form-control">
                                                                                     <option value="">Please Select</option>
                                                                                     <option value="phd">PHD</option>
                                                                                     <option value="masters">MASTERS</option>
@@ -282,48 +272,64 @@
                                                                                     <option value="hnd">HND</option>
                                                                                     <option value="ond">OND</option>
                                                                                     <option value="nce">NCE</option>
+                                                                                    <option value="ssce">SSCE </option>
+                                                                                    <option value="none">NONE</option>
                                                                                 </select>
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="col-lg-6">
                                                                             <div class="form-group">
-                                                                                <label for="native">Native<span class="text-danger">*</span></label>
-                                                                                <input type="text" class="form-control" name="native" required id="native" placeholder="Native">
+                                                                                <label for="native">Native</label>
+                                                                                <input type="text" class="form-control" name="native" id="native" placeholder="Native">
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="col-lg-6">
                                                                             <div class="form-group">
-                                                                                <label for="phone_number">Phone number (Calls)<span class="text-danger">*</span></label>
-                                                                                <input type="text" class="form-control" required id="phone_number" name="phone_number" placeholder="Phone Number">
+                                                                                <label for="phone_number">Phone number (Calls)</label>
+                                                                                <input type="text" class="form-control"  id="phone_number" name="phone_number" placeholder="Phone Number">
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="col-lg-6">
                                                                             <div class="form-group">
-                                                                                <label for="whatsapp_phone">WhatsApp Line<span class="text-danger">*</span></label>
-                                                                                <input type="text" class="form-control" required id="whatsapp_phone" name="whatsapp_phone" placeholder="Whatsapp phone number">
+                                                                                <label for="whatsapp_phone">WhatsApp Line </label>
+                                                                                <input type="text" class="form-control" id="whatsapp_phone" name="whatsapp_phone" placeholder="Whatsapp phone number">
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="col-lg-12">
                                                                             <div class="form-group">
-                                                                                <label for="telegram_username">Telegram Username (Optional)</label>
-                                                                                <input type="text" class="form-control" id="telegram_username" name="telegram_username" placeholder="(Optional) Telegram Username">
+                                                                                <label for="telegram_username">Telegram Username </label>
+                                                                                <input type="text" class="form-control" id="telegram_username" name="telegram_username" placeholder="Telegram Username">
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="col-lg-12">
                                                                             <div class="form-group">
-                                                                                <label for="physical-address">Price / Value Range<span class="text-danger">*</span></label>
+                                                                                <label for="physical-address">Expected Salary </label>
                                                                                 <div class="input-group mb-2">
                                                                                     <div class="input-group-prepend">
-                                                                                        <input type="number" id="price1" name="price1"placeholder="From" required="required" class="form-control browser-default"> 
+                                                                                        <input type="number" id="price1" name="price1"placeholder="From" class="form-control browser-default"> 
                                                                                     </div> 
-                                                                                    <input type="number" id="price2" name="price2" placeholder="To" required="required" class="form-control browser-default"> 
+                                                                                    <input type="number" id="price2" name="price2" placeholder="To" class="form-control browser-default"> 
                                                                                     <div class="input-group-append"></div>
                                                                                 </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-lg-12">
+                                                                            <div class="form-group">
+                                                                                <label for="cv-categories">Cv Categories </label>
+                                                                                <select class="form-control cv-categories" id="cv-categories" name="cv-categories">
+                                                                                    @if(count($cvCategory) > 0)
+                                                                                        <option value="">Please Select</option>
+                                                                                        @foreach($cvCategory as $k => $each_cv_category)
+                                                                                        <option value="{{$each_cv_category->unique_id}}">{{$each_cv_category->cv_category_title}}</option>
+                                                                                        @endforeach
+                                                                                    @endif
+                                                                                </select>
                                                                             </div>
                                                                         </div>
 
@@ -336,8 +342,8 @@
 
                                                                         <div class="col-lg-12">
                                                                             <div class="form-group">
-                                                                                <label for="cover_image">Cover Image <span class="text-danger">*</span></label>
-                                                                                <input type="file" id="cover_image" name="cover_image"  required class="form-control"> 
+                                                                                <label for="cover_image">Cover Image </label>
+                                                                                <input type="file" id="cover_image" name="cover_image" class="form-control"> 
                                                                             </div>
                                                                         </div>
 

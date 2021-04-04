@@ -56,7 +56,6 @@
                             <a class="nav-link  waves-effect waves-light" href="{{ route('login') }}">Login</a>
                         @endauth
                         
-
                     </li>
                 
                 <!-- ============================================================== -->

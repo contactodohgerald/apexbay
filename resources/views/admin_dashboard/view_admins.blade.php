@@ -67,7 +67,7 @@
                                                 <td class="text-center">{{ucfirst($each_user->user_type)}}</td>
                                                 <td class="text-center">{{$each_user->created_at->diffForHumans()}}</td>
                                                 <td class="text-center">
-                                                    <a href="{{route('ad-details', $each_user->unique_id)}}" target="_blank" title="View" class="btn btn-primary">View Admin</a>
+                                                    <a href="{{route('admin-profile-page', $each_user->unique_id)}}" title="View" class="btn btn-primary">View Admin</a>
                                                 </td>
                                             </tr>
                                             @php $count++ @endphp

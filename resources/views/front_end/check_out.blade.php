@@ -34,19 +34,7 @@
                         <!-- ============================================================== -->
                         <!-- Bread crumb and right sidebar toggle -->
                         <!-- ============================================================== -->
-                        <div class="row page-titles">
-                            <div class="form-group center-search">
-                                <div class="input-group mb-3 custom-search-height">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"><i class="ti-search"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control custom-search-height" placeholder="I am looking for... search text here" aria-label="Username" aria-describedby="basic-addon1">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text"><i class="ti-list"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>                
+                        @include('front_end.search')  
                         <!-- ============================================================== -->
                         <!-- End Bread crumb and right sidebar toggle -->
                         <!-- ============================================================== -->
@@ -100,14 +88,14 @@
                                                                         <input type="hidden" name="amount" value="{{ 1200 * 100 }}"> {{-- required in kobo --}}
                                                                         <input type="hidden" name="quantity" value="1">
                                                                         <input type="hidden" name="currency" value="NGN">
-                                                                        <input type="hidden" name="metadata" value="{{ json_encode($array = ['payment_type' => 'Product Activation',]) }}" > {{-- For other necessary things you want to add to your payload. it is optional though --}}
+                                                                        <input type="hidden" name="metadata" value="{{ json_encode($array = ['payment_type' => 'Product Activation', '_unique_id'=> $ad->unique_id]) }}" > {{-- For other necessary things you want to add to your payload. it is optional though --}}
                                                                         <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}"> {{-- required --}}
                                                                         {{ csrf_field() }} {{-- works only when using laravel 5.1, 5.2 --}}
                                                                         <button class="btn btn-primary">Pay 1,200 Now</button>
                                                                     </form>
                                                                 </div>
                                                             </div>                              
-                                                            <p class="mt-4"><span class="text-danger">*</span> Notify us with your payment details via any of the contact links so we can trace and activate your payment.</p>
+                                                            <p class="mt-4"><span class="text-danger">*</span> Online payment will be automatic activation, you don't need to notify us after successful payment is made</p>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -10,6 +10,7 @@ use App\Models\Ad;
 use App\Models\Cv;  
 use App\Models\AdFile; 
 use App\Models\AdCategory;
+use App\Models\CvCategory;
 use App\Models\ProductComment;
 use Illuminate\Support\Facades\Auth;
 use Exception;
@@ -20,9 +21,10 @@ class AdControllerHandler extends Controller
     //
     Use Generics;
     function __construct(
-        AdCategory $adCategory, Ad $ad, AdFile $adFile, Cv $cv
+        AdCategory $adCategory, Ad $ad, AdFile $adFile, Cv $cv, CvCategory $cvCategory
         ){
         $this->adCategory = $adCategory;
+        $this->cvCategory = $cvCategory;
         $this->ad = $ad;
         $this->adFile = $adFile;
         $this->cv = $cv;
@@ -107,7 +109,14 @@ class AdControllerHandler extends Controller
         $adCategory = $this->adCategory->getAllAdCategory([
             ['status', '=', 'confirm'],
         ]);
-        return view('front_end.create_ad', ['adCategory'=>$adCategory]);
+        $cvCategory = $this->cvCategory->getAllCvCategory([
+            ['status', '=', 'confirm'],
+        ]);
+        $view = [
+            'cvCategory'=>$cvCategory,
+            'adCategory'=>$adCategory,
+        ];
+        return view('front_end.create_ad', $view);
     } 
 
     public function productDetails($unique_id = null){
@@ -262,44 +271,24 @@ class AdControllerHandler extends Controller
         return view('front_end.add_ad_files');
     }
 
-    protected function Validator($request){
-
-        $this->validator = Validator::make($request->all(), [
-            'product_name' => 'required',
-            'description' => 'required',
-            'country' => 'required',
-            'state' => 'required',
-            'phone_number' => 'required',
-            'description' => 'required',
-            'currency' => 'required',
-            'price' => 'required',
-            'categories' => 'required',
-        ]);
-    }
-
     public function storeAdPost(Request $request){
         $data = $request->all();
-
+    
         try {
-            $this->Validator($request); //validate fields
 
             $user = Auth::user();
-
-            if($user->subscrition_status == 'no'){
-                return redirect('/pricing');
-            }
 
             $unique_id = $this->createUniqueId('ads', 'unique_id');
 
             $ad = new Ad();
             $ad->unique_id = $unique_id;
-            $ad->ad_category_unique_id = implode('++', $data['categories']);
-            $ad->user_unique_id = Auth::user()->unique_id;
+            $ad->ad_category_unique_id = $data['categories'];
+            $ad->user_unique_id = $user->unique_id;
             $ad->ad_title = $data['product_name'];
             $ad->ad_desc = $data['description'];
             $ad->website_link = $data['website_site'];
             $ad->target_country = $data['country'];
-            $ad->target_state = implode('++', $data['state']);
+            $ad->target_state = $data['state'];
             $ad->physical_address = $data['physical_address'];
             $ad->business_phone = $data['phone_number'];
             $ad->whatsapp_phone = $data['whatsapp_phone'];

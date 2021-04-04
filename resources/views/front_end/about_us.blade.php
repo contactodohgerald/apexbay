@@ -34,19 +34,7 @@
                         <!-- ============================================================== -->
                         <!-- Bread crumb and right sidebar toggle -->
                         <!-- ============================================================== -->
-                        <div class="row page-titles">
-                            <div class="form-group center-search">
-                                <div class="input-group mb-3 custom-search-height">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"><i class="ti-search"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control custom-search-height" placeholder="I am looking for... search text here" aria-label="Username" aria-describedby="basic-addon1">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text"><i class="ti-list"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>                
+                        @include('front_end.search')  
                         <!-- ============================================================== -->
                         <!-- End Bread crumb and right sidebar toggle -->
                         <!-- ============================================================== -->
@@ -94,7 +82,7 @@
                                                         <div class="row">
                                                             <div class="col-lg-4 text-center">
                                                                 <h2>Email:</h2>
-                                                                <p>info@apexbay.com</p>
+                                                                <p>support@apexbay.com.ng</p>
                                                             </div>
                                                             <div class="col-lg-4 text-center">
                                                                 <h2>Phone Number:</h2>

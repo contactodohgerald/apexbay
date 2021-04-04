@@ -15,6 +15,10 @@
     <link href="{{asset('admin_dashboard/assets/css/plugins.css')}}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
+      <!--  BEGIN CUSTOM STYLE FILE  -->
+      <link href="{{ asset('admin_dashboard/assets/css/users/user-profile.css') }}" rel="stylesheet" type="text/css" />
+      <!--  END CUSTOM STYLE FILE  -->
+
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <link href="{{asset('admin_dashboard/plugins/apex/apexcharts.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('admin_dashboard/assets/css/dashboard/dash_1.css')}}" rel="stylesheet" type="text/css" />

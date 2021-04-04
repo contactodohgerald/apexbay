@@ -34,19 +34,7 @@
                         <!-- ============================================================== -->
                         <!-- Bread crumb and right sidebar toggle -->
                         <!-- ============================================================== -->
-                        <div class="row page-titles">
-                            <div class="form-group center-search">
-                                <div class="input-group mb-3 custom-search-height">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"><i class="ti-search"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control custom-search-height" placeholder="I am looking for... search text here" aria-label="Username" aria-describedby="basic-addon1">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text"><i class="ti-list"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>                
+                        @include('front_end.search')  
                         <!-- ============================================================== -->
                         <!-- End Bread crumb and right sidebar toggle -->
                         <!-- ============================================================== -->
@@ -69,7 +57,7 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="alert alert-success">
-                                                    <h3><b class="text-danger">Note: </b> <br><br> Activation fee for Product / Services is <b>₦ 1200</b> for Six (6) months <br><br> Activation fee for Job seekers / employment is <b>₦ 1000</b> for three (3) months</h3>
+                                                    <h3><b class="text-danger">Note: </b> <br><br> Activation fee for Product / Services is <b>₦ 1200</b> for Six (6) months <br><br> Activation fee for Job seekers / employment is <b>₦ 500</b> for three (3) months</h3>
                                                 </div>
                                             </div>
                                         </div>

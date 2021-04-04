@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Redirect;
 use Paystack;
 use Illuminate\Support\Facades\Validator;
 use App\Traits\Generics;
+use App\Models\Ad;  
+use App\Models\Cv;  
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use Exception; 
@@ -19,6 +21,11 @@ class PaymentController extends Controller
 {
     //
     Use Generics;
+
+    function __construct(Cv $cv, Ad $ad){
+        $this->ad = $ad;
+        $this->cv = $cv;
+    }
 
     /**
      * Redirect the User to Paystack Payment Page
@@ -67,6 +74,21 @@ class PaymentController extends Controller
                 $transaction->status = 'confirmed';
 
                 if ($transaction->save()) {
+
+                    if($payment_status['data']['metadata']['payment_type'] == 'Cv Activation'){
+                        $cv = $this->cv->getSingleCv([
+                            ['unique_id', '=', $payment_status['data']['metadata']['_unique_id']],
+                        ]);
+                        $cv->status = 'confirm';
+                        $cv->save();
+                    }else{
+                        $ad = $this->ad->getSingleAd([
+                            ['unique_id', '=', $payment_status['data']['metadata']['_unique_id']]
+                        ]);
+                        $ad->status = 'confirm';
+                        $ad->save();
+                    }
+
                     return redirect()->back()->with('success', 'Your Transaction was successfull');
                 } else {
                     return redirect()->back()->with('error', 'An Error occurred, Please try Again Later');

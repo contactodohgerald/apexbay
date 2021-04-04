@@ -34,19 +34,7 @@
                         <!-- ============================================================== -->
                         <!-- Bread crumb and right sidebar toggle -->
                         <!-- ============================================================== -->
-                        <div class="row page-titles">
-                            <div class="form-group center-search">
-                                <div class="input-group mb-3 custom-search-height">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"><i class="ti-search"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control custom-search-height" placeholder="I am looking for... search text here" aria-label="Username" aria-describedby="basic-addon1">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text"><i class="ti-list"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>                
+                        @include('front_end.search')  
                         <!-- ============================================================== -->
                         <!-- End Bread crumb and right sidebar toggle -->
                         <!-- ============================================================== -->
@@ -97,15 +85,15 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <a href="https://api.whatsapp.com/send?phone={{$ad->whatsapp_phone}}" type="button" class="btn btn-success m-t-10 full-width green_bg"> {{$ad->whatsapp_phone}} 
+                                                        <a href="https://api.whatsapp.com/send?phone={{$ad->whatsapp_phone}}" type="button" class="btn btn-success m-t-10 full-width green_bg"> <i class="fa fa-whatsapp"></i> {{$ad->whatsapp_phone}} 
                                                             <object class="btn-svg" data="images/svg/whatsapp.svg" width="20" height="20"> </object>
                                                         </a>
                                                         <br>
-                                                        <a href="tel:{{$ad->business_phone}}" type="button" class="btn btn-info m-t-10 full-width blue_bg"> {{$ad->business_phone}} 
+                                                        <a href="tel:{{$ad->business_phone}}" type="button" class="btn btn-info m-t-10 full-width blue_bg"> <i class="fa fa-phone"></i> {{$ad->business_phone}} 
                                                             <object class="btn-svg" data="images/svg/phone.svg" width="20" height="20"> </object>
                                                         </a>
                                                         <br>
-                                                        <a href="https://t.me/{{$ad->telegram_username}}" type="button" class="btn btn-info d-lg-block m-t-10 full-width purple_bg"> {{$ad->telegram_username}} 
+                                                        <a href="https://t.me/{{$ad->telegram_username}}" type="button" class="btn btn-info d-lg-block m-t-10 full-width purple_bg"> <i class="fa fa-telegram"></i> {{$ad->telegram_username}} 
                                                             <object class="btn-svg" data="images/svg/telegram.svg" width="20" height="20"> </object>
                                                         </a>
                                                     </div>
