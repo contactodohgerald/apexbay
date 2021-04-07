@@ -158,7 +158,7 @@
                                             <div class="card-body p-l-3 p-r-3">
                                                 <div class="m-2">
                                                     <h2 class="text-center">
-                                                        <b> Post Application / CV</b>
+                                                        <b> Post Jobs</b>
                                                     </h2>
                                                 </div>
                                                 <div class="row">

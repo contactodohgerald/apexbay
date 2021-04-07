@@ -103,7 +103,7 @@
                                         </div>
 
                                         <div class="form-group row mt-3">
-                                            <div class="_sin89lio_thumb col-lg-6 offset-lg-3">
+                                            <div class="_sin89lio_thumb col-lg-6 offset-lg-3 text-center">
                                                 <a href="{{route('preview-cv', $cv->unique_id)}}" target="_blank">
                                                     <button type="submit" class="btn btn-info">Preview Uploaded Cv</button>
                                                 </a>

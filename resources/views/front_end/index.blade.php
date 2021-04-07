@@ -100,7 +100,7 @@
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <ul class="iuhyt_list mt-3">
-                                                                    <li><a href="#">Boosted Ads</a></li>
+                                                                    <li><a href="{{ route('boost-ad') }}">Boosted Ads</a></li>
                                                                 </ul>
                                                             </div>
                                                             <div class="col-lg-8 offset-lg-2">
@@ -115,9 +115,9 @@
                                                                                     @break
                                                                                 @endif
                                                                                 <img src="{{asset('storage/product_image/'.$each_image->ad_files)}}" class="img-fluid" alt="{{env('APP_NAME')}}">
-                                                                            @endforeach
+                                                                            @endforeach 
                                                                             <h4 class="mt-2 mb-3" style="text-align:center;">
-                                                                                <a href="{{route('ad-details')}}" style="color:#fff">{{$each_ads->business_phone}} </a>
+                                                                                <a href="{{route('ad-details', $each_ads->unique_id)}}"  style="color:#fff">{{$each_ads->business_phone}} </a>
                                                                             </h4>
                                                                         </div>
                                                                     @endforeach
@@ -263,7 +263,7 @@
                                                                                 <img src="{{asset('storage/product_image/'.$each_image->ad_files)}}" class="img-fluid" alt="{{env('APP_NAME')}}">
                                                                             @endforeach
                                                                             <h4 class="mt-2 mb-3" style="text-align:center;">
-                                                                                <a href="{{route('ad-details')}}" style="color:#fff">{{$each_ads->business_phone}} </a>
+                                                                                <a href="{{route('ad-details', $each_ads->unique_id)}}" style="color:#fff">{{$each_ads->business_phone}} </a>
                                                                             </h4>
                                                                         </div>
                                                                     @endforeach

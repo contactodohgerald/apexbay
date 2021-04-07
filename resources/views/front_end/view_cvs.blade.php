@@ -83,15 +83,15 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <a href="https://api.whatsapp.com/send?phone={{$cv->whatsapp_phone}}" type="button" class="btn btn-success m-t-10 full-width green_bg"> <i class="fa fa-whatsapp"></i> {{{$cv->whatsapp_phone}}} 
+                                                        <a href="https://api.whatsapp.com/send?phone={{$cv->whatsapp_phone}}" type="button" class="btn btn-success m-t-10 full-width green_bg" {{ ($cv->whatsapp_phone == null || $cv->whatsapp_phone == '')?'hidden':'' }}> <i class="fa fa-whatsapp"></i> {{{$cv->whatsapp_phone}}} 
                                                             <object class="btn-svg" data="images/svg/whatsapp.svg" width="20" height="20"> </object>
                                                         </a>
                                                         <br>
-                                                        <a href="tel:{{$cv->phone_number}}" type="button" class="btn btn-info m-t-10 full-width blue_bg"> <i class="fa fa-phone"></i> {{{$cv->phone_number}}} 
+                                                        <a href="tel:{{$cv->phone_number}}" type="button" class="btn btn-info m-t-10 full-width blue_bg" {{ ($cv->phone_number == null || $cv->phone_number == '')?'hidden':'' }}> <i class="fa fa-phone"></i> {{{$cv->phone_number}}} 
                                                             <object class="btn-svg" data="images/svg/phone.svg" width="20" height="20"> </object>
                                                         </a>
                                                         <br>
-                                                        <a href="https://t.me/{{$cv->telegram_username}}" type="button" class="btn btn-info d-lg-block m-t-10 full-width purple_bg"> <i class="fa fa-telegram"></i> {{$cv->telegram_username}} 
+                                                        <a href="https://t.me/{{$cv->telegram_username}}" type="button" class="btn btn-info m-t-10 full-width purple_bg" {{ ($cv->telegram_username == null || $cv->telegram_username == '')?'hidden':'' }}> <i class="fa fa-telegram"></i> {{$cv->telegram_username}} 
                                                             <object class="btn-svg" data="images/svg/telegram.svg" width="20" height="20"> </object>
                                                         </a>
                                                     </div>

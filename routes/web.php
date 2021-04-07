@@ -6,6 +6,7 @@ use App\Http\Controllers\Ad\AdControllerHandler;
 use App\Http\Controllers\Subscription\SubscribeController;  
 use App\Http\Controllers\AppSettings\AppSettingsController;  
 use App\Http\Controllers\Ad\ProductCommentController; 
+use App\Http\Controllers\Ad\BoostAdController; 
 use App\Http\Controllers\User\UsersController; 
 use App\Http\Controllers\User\UserControllerHandler;
 use App\Http\Controllers\CVs\CVsController;    
@@ -45,6 +46,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/pricing', [SubscribeController::class, 'premuimSubscribe'])->name('pricing');  
     Route::get('/product-activation/{unique_id?}', [SubscribeController::class, 'checkOutPage'])->name('product-activation');  
     Route::get('/cv-activation/{unique_id?}', [SubscribeController::class, 'cvCheckOutPage'])->name('cv-activation');  
+    
+    Route::get('/boost-ad', [BoostAdController::class, 'boostAdPage'])->name('boost-ad');  
 
     Route::get('/app-settings', [AppSettingsController::class, 'appSettingsInterface'])->name('app-settings');  
     Route::get('/store-settings', [AppSettingsController::class, 'storeSettings'])->name('store-settings');   

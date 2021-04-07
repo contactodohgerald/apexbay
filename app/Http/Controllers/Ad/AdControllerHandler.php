@@ -311,59 +311,60 @@ class AdControllerHandler extends Controller
     public function uploadAdFiles(Request $request, $add_unique_id = null){
         $data = $request->all();
 
+        $num = 0;
+
         try {
            
             if ($request->hasFile('file')) {
 
                 $file = $request->file('file');
 
-                $extention = $file->getClientOriginalExtension();
+                foreach($file as $each_files){
 
-                $adFiles = new AdFile();
+                    $extention = $each_files->getClientOriginalExtension();
+                    
+                    $adFiles = new AdFile();
 
-                $unique_id = $this->createUniqueId('ad_files', 'unique_id');
+                    $unique_id = $this->createUniqueId('ad_files', 'unique_id');
+                   
+                    if($extention == 'png' || $extention == 'jpg' || $extention == 'jpeg' || $extention == 'gif'){
+                        # code...
+                        // $request->validate([
+                        //     'file' => 'required|file|image|mimes:jpeg,jpg,png,gif|max:10000',
+                        // ]);
+    
+                        $product_image = md5($each_files->getClientOriginalName() . time()) . "." . $extention;
+                        $each_files->storeAs('public/product_image', $product_image);
+    
+                        $adFiles->unique_id = $unique_id;
+                        $adFiles->ad_unique_id = $add_unique_id;
+                        $adFiles->ad_files = $product_image;
+                        $adFiles->ad_files_type = 'image';
 
-                if($extention == 'png' || $extention == 'jpg' || $extention == 'jpeg' || $extention == 'gif'){
-                    # code...
-                    $request->validate([
-                        'file' => 'required|file|image|mimes:jpeg,jpg,png,gif|max:10000',
-                    ]);
+                        $adFiles->save();
+                    }elseif($extention == 'mp4' || $extention == 'mkv'){
+                        # code...
+                        // $request->validate([
+                        //     'file' => 'required|mimes:mp4,mkv|max:20000',
+                        // ]);
+    
+                        $product_video = md5($each_files->getClientOriginalName() . time()) . "." . $extention;
+                        $each_files->storeAs('public/product_video', $product_video);
+    
+                        $adFiles->unique_id = $unique_id;
+                        $adFiles->ad_unique_id = $add_unique_id;
+                        $adFiles->ad_files = $product_video;
+                        $adFiles->ad_files_type = 'video';
 
-                    $product_image = md5($file->getClientOriginalName() . time()) . "." . $extention;
-                    $file->storeAs('public/product_image', $product_image);
-
-                    $adFiles->unique_id = $unique_id;
-                    $adFiles->ad_unique_id = $add_unique_id;
-                    $adFiles->ad_files = $product_image;
-                    $adFiles->ad_files_type = 'image';
-
-                    if ($adFiles->save()) {
-                        return redirect()->back()->with('success', 'Successfully');
-                    } else {
-                        return redirect()->back()->with('error', 'An Error occurred, Please try Again Later');
+                        $adFiles->save();
                     }
 
-                }elseif($extention == 'mp4' || $extention == 'mkv'){
-                    # code...
-                    $request->validate([
-                        'file' => 'required|mimes:mp4,mkv|max:20000',
-                    ]);
+                    $num = 1;
+                }
 
-                    $product_video = md5($file->getClientOriginalName() . time()) . "." . $extention;
-                    $file->storeAs('public/product_video', $product_video);
-
-                    $adFiles->unique_id = $unique_id;
-                    $adFiles->ad_unique_id = $add_unique_id;
-                    $adFiles->ad_files = $product_video;
-                    $adFiles->ad_files_type = 'video';
-
-                    if ($adFiles->save()) {
-                        return redirect()->back()->with('success', 'Successfully');
-                    } else {
-                        return redirect()->back()->with('error', 'An Error occurred, Please try Again Later');
-                    }
-                }else {
-                    # code...
+                if ($num == 1) {
+                    return redirect()->back()->with('success', 'Files successfully uploaded');
+                } else {
                     return redirect()->back()->with('error', 'An Error occurred, Please try Again Later');
                 }
 

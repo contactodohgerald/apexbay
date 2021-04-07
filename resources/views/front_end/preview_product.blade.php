@@ -92,15 +92,15 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <a disabled href="https://api.whatsapp.com/send?phone={{{$ad->whatsapp_phone}}}" type="button" class="btn btn-success m-t-10 full-width green_bg"> <i class="fa fa-whatsapp"></i> {{{$ad->whatsapp_phone}}} 
+                                                        <a  href="https://api.whatsapp.com/send?phone={{$ad->whatsapp_phone}}" type="button" class="btn btn-success m-t-10 full-width green_bg" {{ ($ad->whatsapp_phone == null || $ad->whatsapp_phone == '')?'hidden':'' }}> <i class="fa fa-whatsapp"></i> {{$ad->whatsapp_phone}} 
                                                             <object class="btn-svg" data="images/svg/whatsapp.svg" width="20" height="20"> </object>
                                                         </a>
                                                         <br>
-                                                        <a href="tel:{{{$ad->business_phone}}}" type="button" class="btn btn-info m-t-10 full-width blue_bg"> <i class="fa fa-phone"></i> {{{$ad->business_phone}}} 
+                                                        <a href="tel:{{{$ad->business_phone}}}" type="button" class="btn btn-info m-t-10 full-width blue_bg" {{ ($ad->business_phone == null || $ad->business_phone == '')?'hidden':'' }}> <i class="fa fa-phone"></i> {{$ad->business_phone}}
                                                             <object class="btn-svg" data="images/svg/phone.svg" width="20" height="20"> </object>
                                                         </a>
                                                         <br>
-                                                        <a href="https://t.me/{{$ad->telegram_username}}" type="button" class="btn btn-info d-lg-block m-t-10 full-width purple_bg"> <i class="fa fa-telegram"></i> {{$ad->telegram_username}} 
+                                                        <a  href="https://t.me/{{$ad->telegram_username}}" type="button" class="btn btn-info  m-t-10 full-width purple_bg"  {{ ($ad->telegram_username == null || $ad->telegram_username == '')?'hidden':'' }}> <i class="fa fa-telegram"></i> {{$ad->telegram_username}} 
                                                             <object class="btn-svg" data="images/svg/telegram.svg" width="20" height="20"> </object>
                                                         </a>
                                                     </div>

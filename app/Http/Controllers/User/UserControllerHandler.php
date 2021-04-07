@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\AppSetting;
+use App\Models\Ad;  
+use App\Models\Cv; 
+use App\Models\PaystackPayment; 
 use App\Traits\Generics;
 use App\Models\User;
 use Exception;
@@ -16,9 +20,13 @@ class UserControllerHandler extends Controller
 {
     //
     use Generics;
-    function __construct(User $user){
+    function __construct(User $user, AppSetting $appSetting, Ad $ad, Cv $cv, PaystackPayment $paystackPayment){
         $this->middleware('auth', ['except' => ['deleteUsers']]);
         $this->user = $user;
+        $this->appSetting = $appSetting;
+        $this->ad = $ad;
+        $this->cv = $cv;
+        $this->paystackPayment = $paystackPayment;
     }
 
     function profilePage(){
@@ -32,7 +40,42 @@ class UserControllerHandler extends Controller
     }
     
     function dashboardInterface(){
-        return view('admin_dashboard.index');
+        $transactions = $this->paystackPayment->getAllPaystackPayment([
+            ['status', 'confirmed'],
+            ['payment_type', 'Product Activation'],
+        ]);
+        foreach($transactions as $each_transactions){
+            $each_transactions->users;
+        }
+        $transactions_cv = $this->paystackPayment->getAllPaystackPayment([
+            ['status', 'confirmed'],
+            ['payment_type', 'Product Activation'],
+        ]);
+        foreach($transactions_cv as $each_transactions_cv){
+            $each_transactions_cv->users;
+        }
+
+        $users = $this->user->getAllUsers([
+            ['user_type', 'user'],
+        ]); 
+
+        $ad_count = $this->ad->getAllAd([
+            ['status', 'confirm'],
+        ]);
+
+        $cv_count = $this->cv->getAllCv([
+            ['status', 'confirm'],
+        ]);
+
+        $view = [
+            'transactions'=>$transactions,
+            'transactions_cv'=>$transactions_cv,
+            'users'=>$users,
+            'ad_count'=>$ad_count,
+            'cv_count'=>$cv_count,
+        ];
+
+        return view('admin_dashboard.index', $view);
     }
 
     function createAdminInterface(){

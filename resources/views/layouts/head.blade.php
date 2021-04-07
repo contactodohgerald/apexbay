@@ -17,6 +17,7 @@
 
       <!--  BEGIN CUSTOM STYLE FILE  -->
       <link href="{{ asset('admin_dashboard/assets/css/users/user-profile.css') }}" rel="stylesheet" type="text/css" />
+      <link href="{{ asset('admin_dashboard/assets/css/elements/infobox.css') }}" rel="stylesheet" type="text/css" />
       <!--  END CUSTOM STYLE FILE  -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
