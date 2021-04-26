@@ -109,59 +109,59 @@
                                                     <span class="font-bold">Work Experience:</span>
                                                     {{$cv->work_experience}} Year</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Job Type:</span>
                                                     {{($cv->job_type == 'full_time')?'Full Time':'Part Time' }}
                                                 </p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Gender:</span>
                                                     {{ucfirst($cv->gender)}}</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Marital Status:</span>
                                                     {{ucfirst($cv->marital_status)}}
                                                 </p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Age:</span>
                                                     {{ucfirst($cv->age)}} Year</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Education:</span>
                                                     {{ucfirst($cv->education)}}</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Still Studying:</span>
                                                     {{ucfirst($cv->studying_status)}}</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Skills:</span>
                                                     {{ucfirst($cv->skills)}}</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Languages:</span>
                                                     {{ucfirst($cv->language)}}</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Certification:</span>
                                                     {{ucfirst($cv->certification)}}</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Highest Qualification:</span>
                                                     {{ucfirst($cv->qualifications)}}</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Native:</span>
                                                     {{ucfirst($cv->native)}}</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Addition Details:</span>
                                                     {{ucfirst($cv->additional_details)}}</p>
                                                 <br/>
-                                                <h5 class="m-t-30 col-12">₦ {{number_format($cv->price1)}} - {{number_format($cv->price2)}}</h5>
+                                                <h5 class="col-12">₦ {{number_format($cv->price1)}} - {{number_format($cv->price2)}}</h5>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Agent:</span>
                                                     {{ucfirst($cv->users->name)}}
                                                 </p>

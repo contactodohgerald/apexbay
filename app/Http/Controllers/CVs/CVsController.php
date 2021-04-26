@@ -42,7 +42,33 @@ class CVsController extends Controller
         return view('admin_dashboard.view_cvs', ['cvs'=>$cvs]);
     }
 
-    public function cvDetailsInterface($unique_id = null){
+    public function getAllCvs(){
+        $cvs = $this->cv->getAllCv([
+            ['status', '=', 'confirm'],
+        ]);
+
+        foreach($cvs as $vv => $each_cvs){
+            $each_cvs->users;
+        }
+
+        return view('admin_dashboard.all_cvs', ['cvs'=>$cvs]);
+    } 
+
+    public function cvCounter($unique_id = null){
+        if($unique_id != null){
+            $cv = $this->cv->getSingleCv([
+                ['unique_id', $unique_id],
+            ]);
+          
+            $cv->users;
+         
+            return view('admin_dashboard.cvs_counter', ['cv'=>$cv]);
+        }else{
+            exit(404);
+        }
+    }
+
+    public function cvDetailsInterface(Request $request, $unique_id = null){
 
         if($unique_id != null){
             $cv = $this->cv->getSingleCv([
@@ -58,55 +84,23 @@ class CVsController extends Controller
                 $each_cv_comment->users;
             }
 
-            $ads = $this->ad->getAdByPaginate(2,[
+            $cvs = $this->cv->getCvByPaginate(5,[
                 ['status', '=', 'confirm'],
+                ['cv_category_unique_id', $cv->cv_category_unique_id],
             ]);
 
-            $ad_category_array = [];
-
-            $image_count = [];
-    
-            $video_count = [];
-
-            foreach($ads as $vv => $each_ads){
-                $each_ads->ad_files_get;
-    
-                foreach($each_ads->ad_files_get as $h => $file_counts){
-    
-                    if($file_counts->ad_files_type == 'image'){
-            
-                        array_push($image_count, $file_counts);
-                    }
-    
-                    if($file_counts->ad_files_type == 'video'){
-            
-                        array_push($video_count, $file_counts);
-                    }
-    
-    
-                }
-                $each_ads->image_count = $image_count;
-    
-                $each_ads->video_count = $video_count;
-    
-                $explode = explode('++', $each_ads->ad_category_unique_id);
-                foreach($explode as $cx => $each_explode){
-                   $ad_category = $this->adCategory->getSingleAdCategory([
-                        ['unique_id', '=', $each_explode],
-                    ]);
-    
-                    array_push($ad_category_array, $ad_category);
-                }
-                $each_ads->ad_category = $ad_category_array;
-    
-                $each_ads->users;
-               
+            foreach($cvs as $vv => $each_cvs){
+                $each_cvs->users;
             }
-
             $view = [
-                'ads'=>$ads,
+                'cvs'=>$cvs,
                 'cv'=>$cv,
             ];
+
+            if($request->ajax()){
+                $views = view('front_end.data', compact('cvs'))->render();
+                return response()->json(['html'=>$views]);
+            }   
          
             return view('front_end.view_cvs', $view);
         }
@@ -269,10 +263,13 @@ class CVsController extends Controller
   
             foreach ($dataArray as $eachDataArray) {
 
+                $now = Carbon::now()->addMonths(3);
+
                 //update the ad status to confirmed
                 $cv = $this->cv->selectSingleCv($eachDataArray);
                 $cv->status = 'confirm';
                 $cv->activation_date = Carbon::now()->toDateTimeString();
+                $cv->duration_period = $now->toDateTimeString();
                 $cv->save();
             }
             return response()->json(['error_code' => 0, 'success_statement' => 'Selected Cv has been confirmed successfully']);

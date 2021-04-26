@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Traits\Generics;
 use App\Models\AdCategory;
 use App\Models\Ad;  
+use App\Models\User;  
 use Exception;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -38,6 +39,34 @@ class AdController extends Controller
         }
 
         return view('admin_dashboard.comfirm_ads', ['ads'=>$ads]);
+    }
+
+    public function getAllproducts(){
+        $ads = $this->ad->getAllAd([
+            ['status', 'confirm'],
+        ]);
+
+        foreach($ads as $vv => $each_ads){
+            $each_ads->users;
+        }
+
+        return view('admin_dashboard.all_products', ['ads'=>$ads]);
+    }  
+    
+    public function productCounter($unique_id = null){
+        if($unique_id != null){
+            $ads = $this->ad->getSingleAd([
+                ['unique_id', $unique_id],
+            ]);
+          
+            $ads->users;
+
+           // return $ads;
+          
+            return view('admin_dashboard.product_counter', ['ads'=>$ads]);
+        }else{
+            exit(404);
+        }
     }
 
 
@@ -157,13 +186,16 @@ class AdController extends Controller
 
             foreach ($dataArray as $eachDataArray) {
 
+                $now = Carbon::now()->addMonths(3);
+
                 //update the ad status to confirmed
                 $ad = $this->ad->selectSingleAd($eachDataArray);
                 $ad->status = 'confirm';
                 $ad->activation_date = Carbon::now()->toDateTimeString();
+                $ad->duration_period = $now->toDateTimeString();
                 $ad->save();
             }
-            return response()->json(['error_code' => 0, 'success_statement' => 'Selected Ad has been confirmed successfully']);
+            return response()->json(['error_code' => 0, 'success_statement' => 'Selected Product(s) has been confirmed successfully']);
         } catch (Exception $exception) {
 
             $error = $exception->getMessage();
@@ -188,7 +220,7 @@ class AdController extends Controller
                 $ad = $this->ad->selectSingleAd($eachDataArray);
                 $ad->delete();
             }
-            return response()->json(['error_code' => 0, 'success_statement' => 'Selected Ad has been deleted successfully']);
+            return response()->json(['error_code' => 0, 'success_statement' => 'Selected Product(s) has been deleted successfully']);
         } catch (Exception $exception) {
 
             $error = $exception->getMessage();

@@ -85,7 +85,10 @@
                         </a>
                         <ul class="collapse submenu list-unstyled" id="product" data-parent="#accordionExample">
                             <li>
-                                <a href="{{route('confirm-ads')}}"> View Products </a>
+                                <a href="{{route('confirm-ads')}}"> Confrim Products </a>
+                            </li>
+                            <li>
+                                <a href="{{route('all-products')}}"> View All Products </a>
                             </li>
                         </ul>
                     </li>
@@ -102,7 +105,30 @@
                         </a>
                         <ul class="collapse submenu list-unstyled" id="cv" data-parent="#accordionExample">
                             <li>
-                                <a href="{{route('comfirm-cvs')}}"> View CVs </a>
+                                <a href="{{route('comfirm-cvs')}}"> Comfirm CVs </a>
+                            </li>
+                            <li>
+                                <a href="{{route('all-cvs')}}"> View All CVs </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu">
+                        <a href="#boosted_ad" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+                                <span>Boosted Ads</span>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
+                        </a>
+                        <ul class="collapse submenu list-unstyled" id="boosted_ad" data-parent="#accordionExample">
+                            <li>
+                                <a href="{{route('create-boost-ads')}}"> Add Boosted Ads </a>
+                            </li>
+                            <li>
+                                <a href="{{route('all-boost-ads')}}"> View All Ads </a>
                             </li>
                         </ul>
                     </li>

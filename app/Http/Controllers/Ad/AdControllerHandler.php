@@ -9,6 +9,7 @@ use App\Traits\Generics;
 use App\Models\Ad;  
 use App\Models\Cv;  
 use App\Models\AdFile; 
+use App\Models\BoostAd;
 use App\Models\AdCategory;
 use App\Models\CvCategory;
 use App\Models\ProductComment;
@@ -21,29 +22,28 @@ class AdControllerHandler extends Controller
     //
     Use Generics;
     function __construct(
-        AdCategory $adCategory, Ad $ad, AdFile $adFile, Cv $cv, CvCategory $cvCategory
+        AdCategory $adCategory, Ad $ad, AdFile $adFile, Cv $cv, CvCategory $cvCategory, BoostAd $BoostAd
         ){
         $this->adCategory = $adCategory;
         $this->cvCategory = $cvCategory;
         $this->ad = $ad;
         $this->adFile = $adFile;
         $this->cv = $cv;
+        $this->BoostAd = $BoostAd;
     } 
 
-    public function indexPage(){
+    public function indexPage(Request $request){
         $adCategory = $this->adCategory->getAllAdCategory([
             ['status', '=', 'confirm'],
         ]);
 
-        $ads = $this->ad->getAdByPaginate(10,[
+        $ads = $this->ad->getAdByPaginate(5,[
             ['status', '=', 'confirm'],
         ]);
 
-        $boosted_ads = $this->ad->getAllAd([
-            ['status', '=', 'confirm'],
-        ]);
+        //return $ads;
 
-        $cvs = $this->cv->getCvByPaginate(10,[
+        $cvs = $this->cv->getCvByPaginate(5,[
             ['status', '=', 'confirm'],
         ]);
 
@@ -51,8 +51,12 @@ class AdControllerHandler extends Controller
             $each_cvs->users;
         }
 
-        foreach($boosted_ads as $rt => $each_boosted_ads){
-            $each_boosted_ads->ad_files_get;
+        $boosted_ads = $this->BoostAd->getRandomSingleBoostAd([
+            ['status', '=', 'on'],
+        ]);
+
+        foreach($boosted_ads as $each_boosted_ads){
+            $each_boosted_ads->users;
         }
 
         $ad_category_array = [];
@@ -102,8 +106,20 @@ class AdControllerHandler extends Controller
             'boosted_ads'=>$boosted_ads,
             'cvs'=>$cvs,
         ];
+
+        if($request->ajax()){
+            $views = view('front_end.data', compact('cvs'))->render();
+            return response()->json(['html'=>$views]);
+        }   
+        
+        if($request->ajax()){
+            $views = view('front_end.data_ad', compact('ads'))->render();
+            return response()->json(['html'=>$views]);
+        }
+
         return view('front_end.index', $view);
     } 
+    
     
     public function createAd(){
         $adCategory = $this->adCategory->getAllAdCategory([
@@ -119,7 +135,7 @@ class AdControllerHandler extends Controller
         return view('front_end.create_ad', $view);
     } 
 
-    public function productDetails($unique_id = null){
+    public function productDetails(Request $request, $unique_id = null){
 
         if($unique_id != null){
             $ad = $this->ad->getSingleAd([
@@ -135,8 +151,9 @@ class AdControllerHandler extends Controller
                 $each_comment->users;
             }
 
-            $ads = $this->ad->getAdByPaginate(2,[
+            $ads = $this->ad->getAdByPaginate(5,[
                 ['status', '=', 'confirm'],
+                ['ad_category_unique_id', $ad->ad_category_unique_id],
             ]);
 
             $ad_category_array = [];
@@ -184,6 +201,12 @@ class AdControllerHandler extends Controller
                 'ad'=>$ad,
                 'ads'=>$ads,
             ];
+            
+            if($request->ajax()){
+                $views = view('front_end.data_ad', compact('ads'))->render();
+                return response()->json(['html'=>$views]);
+            }
+
             return view('front_end.product_details', $view);
         }
         return view('front_end.product_details');

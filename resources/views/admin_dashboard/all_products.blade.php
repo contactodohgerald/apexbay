@@ -1,8 +1,9 @@
 @php 
-    $pageName = 'Confirm Products';
+    $pageName = 'All Products';
     $ad = 'active';
 @endphp
 @include('layouts.head')
+
 <body>
 
     <!--  BEGIN NAVBAR  -->
@@ -29,6 +30,7 @@
                         <div class="widget-content widget-content-area br-6">
                             <div class="table-responsive mb-4 mt-4">
                                 <table id="default-ordering" class="table table-hover" style="width:100%">
+                                                                            
                                     <thead>
                                         <tr>
                                             <th class="text-center">S / N</th>
@@ -41,6 +43,7 @@
                                             <th class="text-center">Target Country</th>
                                             <th class="text-center">Status</th>
                                             <th class="text-center">Date Created</th>
+                                            <th class="text-center">View Counter</th>
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
@@ -58,20 +61,15 @@
                                                 <td class="text-center">{{ucfirst($each_ads->users->name)}}</td>
                                                 <td class="text-center">{{$each_ads->users->phone}}</td>
                                                 <td class="text-center">{{ucfirst($each_ads->target_country)}}</td>
-                                                @php if($each_ads->status === 'comfirm'){
-                                                        $status = 'Confirmed';
-                                                        $labelColor = 'success';
-                                                    }else{
-                                                        $status = 'Pending';
-                                                        $labelColor = 'danger';
-                                                    }
-                                                @endphp
                                                 <td class="text-center">
-                                                    <button class="btn btn-{{$labelColor}}">{{$status}}</button>
+                                                    <button class="btn btn-success">{{($each_ads->status === 'comfirm')?'Comfirmed':'Comfirmed'}}</button>
                                                 </td>
                                                 <td class="text-center">{{$each_ads->created_at->diffForHumans()}}</td>
                                                 <td class="text-center">
-                                                    <a href="{{route('preview-product', $each_ads->unique_id)}}" target="_blank" title="View" class="btn btn-primary">View Product</a>
+                                                    <a href="{{route('product-counter', $each_ads->unique_id)}}" target="_blank" title="View Counter" class="btn btn-dark">Counter</a>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="{{route('preview-product', $each_ads->unique_id)}}" target="_blank" title="View Product" class="btn btn-primary">View</a>
                                                 </td>
                                             </tr>
                                             @php $count++ @endphp
@@ -89,9 +87,7 @@
                     </div>
                     
                     <div style="position: fixed; bottom: 30px; right: 30px; z-index: 200">
-                        <button type="button" class="btn btn-primary" id="comfirmAds" title="Select Product(s) to be confirmed by ticking the checkbox on each row and then click this button to proceed">Confirm Product(s)</button>
-
-                        <button type="button" class="btn btn-primary" id="deleteAds" title="Select Product(s) to be deleted by ticking the checkbox on each row and then click this button to proceed">Delete Product(s)</button>
+                        <button type="button" class="btn btn-danger" id="deleteAds" title="Select Product(s) to be deleted by ticking the checkbox on each row and then click this button to proceed">Delete Product(s)</button>
                     </div>
                 </div>
 
@@ -106,9 +102,7 @@
     <!-- END MAIN CONTAINER -->
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-    @include('layouts.e_script')
-
-    
+    @include('layouts.e_script')    
 
 </body>
 

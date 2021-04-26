@@ -1,5 +1,6 @@
 <div class="row page-titles">
     <div class="form-group center-search">
+        <p style="text-align: center; color: #fff"> online business & job advertisement company</p>
         <form action="{{ route('search-query') }}" method="POST">
             @csrf
             <div class="input-group mb-3 custom-search-height">

@@ -57,7 +57,7 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="alert alert-success">
-                                                    <h3><b class="text-danger">Note: </b> <br><br> Activation fee for Product / Services is <b>₦ 1200</b> for Six (6) months <br><br> Activation fee for Job seekers / employment is <b>₦ 500</b> for three (3) months</h3>
+                                                    <h3><b class="text-danger">Note: </b> <br><br> Activation fee for Product / Services is <b>₦ 1200</b> for Three (3) months <br><br> Activation fee for Job seekers / employment is <b>₦ 500</b> for three (3) months</h3>
                                                 </div>
                                             </div>
                                         </div>

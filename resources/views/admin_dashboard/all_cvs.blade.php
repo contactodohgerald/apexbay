@@ -1,6 +1,6 @@
 @php 
-    $pageName = 'Confirm Products';
-    $ad = 'active';
+    $pageName = 'All CVs';
+    $cv = 'active';
 @endphp
 @include('layouts.head')
 <body>
@@ -35,43 +35,43 @@
                                             <th class="text-center">
 												<input onclick="checkAll()" type="checkbox" class="mainCheckBox" />
 											</th>
-                                            <th class="text-center">Ad Title</th>
-                                            <th class="text-center">User FullName</th>
-                                            <th class="text-center">User Phone Number</th>
-                                            <th class="text-center">Target Country</th>
+                                            <th class="text-center">Full Name</th>
+                                            <th class="text-center">Gender</th>
+                                            <th class="text-center">Age</th>
+                                            <th class="text-center">Price Range</th>
+                                            <th class="text-center">Work Experience</th>
+                                            <th class="text-center">Job Type</th>
                                             <th class="text-center">Status</th>
                                             <th class="text-center">Date Created</th>
+                                            <th class="text-center">View Counter</th>
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        @if(count($ads) > 0)
+                                        @if(count($cvs) > 0)
                                         @php $count = 1; @endphp
-                                        @foreach($ads as $k => $each_ads)
+                                        @foreach($cvs as $k => $each_cvs)
                                             <tr>
                                                 <td class="text-center">{{$count}}</td>
                                                 <td class="text-center">
-                                                    <input type="checkbox" class="smallCheckBox" value="{{$each_ads->unique_id}}">
+                                                    <input type="checkbox" class="smallCheckBox" value="{{$each_cvs->unique_id}}">
                                                 </td>
-                                                <td class="text-center">{{ucfirst($each_ads->ad_title)}}</td>
-                                                <td class="text-center">{{ucfirst($each_ads->users->name)}}</td>
-                                                <td class="text-center">{{$each_ads->users->phone}}</td>
-                                                <td class="text-center">{{ucfirst($each_ads->target_country)}}</td>
-                                                @php if($each_ads->status === 'comfirm'){
-                                                        $status = 'Confirmed';
-                                                        $labelColor = 'success';
-                                                    }else{
-                                                        $status = 'Pending';
-                                                        $labelColor = 'danger';
-                                                    }
-                                                @endphp
+                                                <td class="text-center">{{ucfirst($each_cvs->full_name)}}</td>
+                                                <td class="text-center">{{ucfirst($each_cvs->gender)}}</td>
+                                                <td class="text-center">{{$each_cvs->age}} Years</td>
+                                                <td class="text-center">{{number_format($each_cvs->price1)}} - {{number_format($each_cvs->price2)}}</td>
+                                                <td class="text-center">{{$each_cvs->work_experience}} Years</td>
+                                                <td class="text-center">{{($each_cvs->job_type == 'full_time')?'Full Time':'Part Time'}}</td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-{{$labelColor}}">{{$status}}</button>
+                                                    <button class="btn btn-success">{{($each_cvs->status === 'comfirm')?'Comfirmed':'Comfirmed'}}</button>
                                                 </td>
-                                                <td class="text-center">{{$each_ads->created_at->diffForHumans()}}</td>
+                                                <td class="text-center">{{$each_cvs->created_at->diffForHumans()}}</td>
                                                 <td class="text-center">
-                                                    <a href="{{route('preview-product', $each_ads->unique_id)}}" target="_blank" title="View" class="btn btn-primary">View Product</a>
+                                                    <a href="{{route('cv-counter', $each_cvs->unique_id)}}" target="_blank" title="View Counter" class="btn btn-dark">Counter</a>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="{{route('preview-cv', $each_cvs->unique_id)}}" target="_blank" title="View" class="btn btn-primary">View Cvs</a>
                                                 </td>
                                             </tr>
                                             @php $count++ @endphp
@@ -89,9 +89,7 @@
                     </div>
                     
                     <div style="position: fixed; bottom: 30px; right: 30px; z-index: 200">
-                        <button type="button" class="btn btn-primary" id="comfirmAds" title="Select Product(s) to be confirmed by ticking the checkbox on each row and then click this button to proceed">Confirm Product(s)</button>
-
-                        <button type="button" class="btn btn-primary" id="deleteAds" title="Select Product(s) to be deleted by ticking the checkbox on each row and then click this button to proceed">Delete Product(s)</button>
+                        <button type="button" class="btn btn-primary" id="deleteCvs" title="Select Cv(s) to be deleted by ticking the checkbox on each row and then click this button to proceed">Delete Cv(s)</button>
                     </div>
                 </div>
 

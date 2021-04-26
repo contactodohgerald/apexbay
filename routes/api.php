@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Ad\AdController;  
 use App\Http\Controllers\CVs\CVsController;  
 use App\Http\Controllers\User\UserControllerHandler; 
+use App\Http\Controllers\BoostAd\BoostAdController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +33,9 @@ Route::post('/deleteCvsStatus', [CVsController::class, 'deleteCvsStatus'])->name
 Route::post('/deleteUsers', [UserControllerHandler::class, 'deleteUsers'])->name('deleteUsers');   
 
 Route::post('/deleteTransaction', [SubscribeController::class, 'deleteTransaction'])->name('deleteTransaction');  
+
+Route::post('/deleteBoostAds', [BoostAdController::class, 'deleteBoostAds'])->name('deleteBoostAds');
+
+Route::post('/updeteBoostAdsStatus', [BoostAdController::class, 'updeteBoostAdsStatus'])->name('updeteBoostAdsStatus');
+
 

@@ -6,7 +6,7 @@ use App\Http\Controllers\Ad\AdControllerHandler;
 use App\Http\Controllers\Subscription\SubscribeController;  
 use App\Http\Controllers\AppSettings\AppSettingsController;  
 use App\Http\Controllers\Ad\ProductCommentController; 
-use App\Http\Controllers\Ad\BoostAdController; 
+use App\Http\Controllers\BoostAd\BoostAdController; 
 use App\Http\Controllers\User\UsersController; 
 use App\Http\Controllers\User\UserControllerHandler;
 use App\Http\Controllers\CVs\CVsController;    
@@ -92,7 +92,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/list-category', [AdController::class, 'allAdCategory'])->name('list-category'); 
     Route::get('/list-cv-category', [CVControllerHandler::class, 'allCvCategory'])->name('list-cv-category'); 
     Route::get('/confirm-ads', [AdController::class, 'confirmAdsInterface'])->name('confirm-ads'); 
+    Route::get('/all-products', [AdController::class, 'getAllproducts'])->name('all-products'); 
     Route::get('/edit-category/{unique_id?}', [AdController::class, 'singleAdCategory'])->name('edit-category');
+    Route::get('/product-counter/{unique_id?}', [AdController::class, 'productCounter'])->name('product-counter');
     Route::get('/edit-cv-category/{unique_id?}', [CVControllerHandler::class, 'singleCvCategory'])->name('edit-cv-category');
     Route::post('/store-category', [AdController::class, 'storeAdCategory'])->name('store-category');
     Route::post('/store-cv-category', [CVControllerHandler::class, 'storeCvCategory'])->name('store-cv-category');
@@ -107,9 +109,16 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/update-password', [UserControllerHandler::class, 'userPasswordUpdate'])->name('update-password'); 
 
     Route::get('/comfirm-cvs', [CVsController::class, 'viewCvInterface'])->name('comfirm-cvs'); 
+    Route::get('/all-cvs', [CVsController::class, 'getAllCvs'])->name('all-cvs'); 
+    Route::get('/cv-counter/{unique_id?}', [CVsController::class, 'cvCounter'])->name('cv-counter');
 
     Route::get('/product-transactions', [SubscribeController::class, 'transactionPage'])->name('product-transactions'); 
     Route::get('/cv-transactions', [SubscribeController::class, 'cvTransactionPage'])->name('cv-transactions'); 
+
+
+    Route::get('/create-boost-ads', [BoostAdController::class, 'createBoostAdInterface'])->name('create-boost-ads'); 
+    Route::get('/all-boost-ads', [BoostAdController::class, 'getAllBoostedAds'])->name('all-boost-ads'); 
+    Route::post('/add-boost-ads', [BoostAdController::class, 'addBoostedAds'])->name('add-boost-ads'); 
     
     
 });

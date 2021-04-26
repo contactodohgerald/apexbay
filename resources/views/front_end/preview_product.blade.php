@@ -111,26 +111,26 @@
                                                     <span class="font-bold">Description:</span>
                                                     {{$ad->ad_desc}}</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="m-t-5 col-12">
                                                     <span class="font-bold">Address:</span>
                                                     {{$ad->physical_address}}
                                                 </p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="m-t-5 col-12">
                                                     <span class="font-bold">City/State/Province:</span>
                                                                                             </p><br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="m-t-5 col-12">
                                                     <span class="font-bold">Website:</span>
                                                     {{$ad->website_link}}
                                                 </p>
                                                 <br/>
-                                                <h5 class="m-t-30 col-12">₦ {{number_format($ad->balance)}}</h5>
+                                                <h5 class="m-t-5 col-12">₦ {{number_format($ad->balance)}}</h5>
                                                     <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="m-t-5 col-12">
                                                     <span class="font-bold">Category:</span>
                                                 </p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="m-t-5 col-12">
                                                     <span class="font-bold">Agent:</span>
                                                     {{ucfirst($ad->users->name)}}
                                                 </p>

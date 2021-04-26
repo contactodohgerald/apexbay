@@ -104,26 +104,26 @@
                                                     <span class="font-bold">Description:</span>
                                                     {{$ad->ad_desc}}</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="m-t-5 col-12">
                                                     <span class="font-bold">Address:</span>
                                                     {{$ad->physical_address}}
                                                 </p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="m-t-5 col-12">
                                                     <span class="font-bold">City/State/Province:</span>
                                                                                             </p><br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="m-t-5 col-12">
                                                     <span class="font-bold">Website:</span>
                                                     {{$ad->website_link}}
                                                 </p>
                                                 <br/>
-                                                <h5 class="m-t-30 col-12">₦ {{number_format($ad->balance)}}</h5>
+                                                <h5 class="m-t-5 col-12">₦ {{number_format($ad->balance)}}</h5>
                                                     <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="m-t-5 col-12">
                                                     <span class="font-bold">Category:</span>
                                                 </p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="m-t-5 col-12">
                                                     <span class="font-bold">Agent:</span>
                                                     {{ucfirst($ad->users->name)}}
                                                 </p>
@@ -194,8 +194,11 @@
 
                                             
                                             <h5 class="m-t-20 m-b-10 m-l-40 font-bold">Similar Ads</h5>
-                                            @if(count($ads) > 0)
+                                            {{-- @if(count($ads) > 0)
                                                 @foreach($ads as $ee => $each_ads)
+                                                    @if ($ad->unique_id == $each_ads->unique_id)
+                                                        @continue                                                        
+                                                    @endif
                                                     <div class="card shadow rounded custom-card">
                                                         <div class="row g-0">
                                                             <div class="col-4 col-lg-3">
@@ -230,7 +233,28 @@
                                                         </div>
                                                     </div>
                                                 @endforeach
-                                            @endif
+                                            @else
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                                    <div class="alert alert-success text-center mt-5">
+                                                        <h3>They arent any similar ad's avaliable yet</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endif --}}
+                                            
+                                            <div class="row">
+                                                <div class="col-md-12" id="post-data-ad">
+                                                    @include('front_end.data_ad')
+                                                </div>
+
+                                                <div class="col-md-12 text-center mb-2">
+                                                    <div class="ajax-load" style="display: none">
+                                                        <p><img src="{{ asset('loader.gif') }}" alt="{{ env('APP_NAME') }}" width="50" height="50"> Loading More Jobs ...</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                         
                                     </div>

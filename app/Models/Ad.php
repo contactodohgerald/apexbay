@@ -42,7 +42,7 @@ class Ad extends Model
 
     public function getAdByPaginate($number, $condition = null, $id = 'id', $desc = 'desc'){
 
-        return Ad::where($condition)->orderBy($id, $desc)->simplePaginate($number);
+        return Ad::where($condition)->orderBy($id, $desc)->paginate($number);
 
     }
 

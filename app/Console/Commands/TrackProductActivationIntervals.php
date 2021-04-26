@@ -51,7 +51,7 @@ class TrackProductActivationIntervals extends Command
         if(count($ads) > 0){
             foreach($ads as $key => $each_ads){
                 $get_date_progress = Carbon::parse($each_ads->activation_date)->diffInDays(Carbon::now());
-                if($get_date_progress >= 183){
+                if($get_date_progress >= 91){
                     $each_ads->status = 'pending';
                     $each_ads->activation_date = null;
                     $each_ads->save();

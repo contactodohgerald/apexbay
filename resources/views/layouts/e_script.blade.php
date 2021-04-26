@@ -48,4 +48,6 @@
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
     <script src="{{asset('admin_dashboard/plugins/apex/apexcharts.min.js')}}"></script>
     <script src="{{asset('admin_dashboard/assets/js/dashboard/dash_1.js')}}"></script>
+
+    <script src="{{asset('countdown-plugin/jquery.countdown.min.js')}}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->

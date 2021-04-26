@@ -18,6 +18,8 @@
 <div class="kc_fab_wrapper"></div>
 <script src="{{ asset('front_end/dist/js/kc.fab.js')}}"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
+
 <!--Flexslider JavaScript -->
 <script src="{{ asset('front_end/js/jquery.flexslider.js')}}"></script>
 <script src="{{ asset('front_end/js/imagezoom.js')}}"></script>
@@ -27,6 +29,61 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 @include('sweetalert::alert')
+
+<script>
+    function loadMoreData(page){
+        $.ajax({
+            url:'?page=' + page,
+            type:'get',
+            beforeSend: function(){
+                $('.ajax-load').show();
+            }
+        })
+        .done(function(data){
+            if(data.html == ""){
+              $('.ajax-load').html("No more records found");
+              return;
+            }
+          $('.ajax-load').hide();
+          $("#post-data").append(data.html);
+          console.log(data); return;
+        })
+        .fail(function(jqXHR, ajaxOptions, thrownError){
+            $('.ajax-load').html("Server no responding...");
+        });
+    } 
+    
+    function loadMoreAdData(page){
+        $.ajax({
+            url:'?page=' + page,
+            type:'get',
+            beforeSend: function(){
+                $('.ajax-load').show();
+            }
+        })
+        .done(function(data){
+            if(data.html == ""){
+              $('.ajax-load').html("No more records found");
+              return;
+            }
+          $('.ajax-load').hide();
+          $("#post-data-ad").append(data.html);
+        })
+        .fail(function(jqXHR, ajaxOptions, thrownError){
+            $('.ajax-load').html("Server no responding...");
+        });
+    }
+
+    var page = 1;
+    $(window).scroll(function(){
+        if($(window).scrollTop() + $(window).height() >= $(document).height()){
+            page++;
+            loadMoreData(page);
+
+            loadMoreAdData(page);
+        }
+    });
+</script>
 
 <script>
 

@@ -58,34 +58,15 @@
                                         <div class="tab-pane active" id="home" role="tabpanel">
 
                                             <div class="row">
-                                                @if(count($boosted_ads) > 0)
-                                                     @foreach($boosted_ads as $ee => $each_ads)
-                                                        <div class="col-lg-12 mt-2">
-                                                            <div class="container site_color_dark">   
-                                                                <div class="row">
-                                                                    <div class="col-lg-12">
-                                                                        <ul class="iuhyt_list mt-3">
-                                                                            <li><a href="#">Boosted Ads</a></li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <div class="col-lg-8 offset-lg-2">
-                                                                        <div class="image-sector2">
-                                                                            @foreach($each_ads->ad_files_get as $oo => $each_image)
-                                                                                @if($oo == 1)
-                                                                                    @break
-                                                                                @endif
-                                                                                <img src="{{asset('storage/product_image/'.$each_image->ad_files)}}" class="img-fluid" alt="{{env('APP_NAME')}}">
-                                                                            @endforeach 
-                                                                            <h4 class="mt-2 mb-3" style="text-align:center;">
-                                                                                <a href="{{route('ad-details', $each_ads->unique_id)}}"  style="color:#fff">{{$each_ads->business_phone}} </a>
-                                                                            </h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>                                                       
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                @endif
+                                                <div class="col-md-12" id="boost-ads-data">
+                                                    @include('front_end.boost_ads_data')
+                                                </div>
+
+                                                <div class="col-md-12 text-center mb-2">
+                                                    <div class="ajax-load" style="display: none">
+                                                        <p><img src="{{ asset('loader.gif') }}" alt="{{ env('APP_NAME') }}" width="50" height="50"> Loading More Ads ...</p>
+                                                    </div>
+                                                </div>
                                             </div>
                         
                                         </div>
@@ -133,6 +114,39 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
   @include('include.e_script')
+
+  <script>
+    function loadMoreBoostadsData(page){
+        $.ajax({
+            url:'?page=' + page,
+            type:'get',
+            beforeSend: function(){
+                $('.ajax-load').show();
+            }
+        })
+        .done(function(data){
+            if(data.html == ""){
+              $('.ajax-load').html("No more records found");
+              return;
+            }
+          $('.ajax-load').hide();
+          $("#boost-ads-data").append(data.html);
+          console.log(data); return;
+        })
+        .fail(function(jqXHR, ajaxOptions, thrownError){
+            $('.ajax-load').html("Server no responding...");
+        });
+    } 
+
+    var page = 1;
+    $(window).scroll(function(){
+        if($(window).scrollTop() + $(window).height() >= $(document).height()){
+            page++;
+            loadMoreBoostadsData(page);
+        }
+    });
+</script>
+
 </body>
 
 

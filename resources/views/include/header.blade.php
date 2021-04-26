@@ -5,7 +5,8 @@
         <!-- ============================================================== -->
         <div class="navbar-header">
             <a class="navbar-brand" href="/">
-                <!-- Logo icon --><b>
+                <!-- Logo icon -->
+                <b>
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
                     <img src="{{ asset('front_end/images/logo_1x.png') }}" alt="{{ env('APP_NAME') }}" class="dark-logo" />
@@ -23,6 +24,7 @@
                 
             </a>
         </div>
+        
         <!-- ============================================================== -->
         <!-- End Logo -->
         <!-- ============================================================== -->
@@ -64,5 +66,6 @@
                 <li class="nav-item right-side-toggle"> <a class="nav-link  waves-effect waves-light" href="javascript:void(0)"><i class="ti-menu"></i></a></li>
             </ul>
         </div>
+        
     </nav>
 </header>  

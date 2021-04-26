@@ -81,7 +81,7 @@
                                                             <div class="row">
                                                                 <div class="col-lg-6  offset-lg-3 col-12">
                                                                     <form method="POST" action="{{ route('pay') }}" >
-                                                                        <p>Pay ₦ 500 for Product / Services activation</p>
+                                                                        <p>Pay ₦ 500 for Post Application  activation</p>
 
                                                                         <input type="hidden" name="email" value="{{ auth()->user()->email }}"> {{-- required --}}
                                                                         <input type="hidden" name="orderID" value="{{ Paystack::genTranxRef() }}">

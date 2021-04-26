@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use Paystack;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use App\Traits\Generics;
 use App\Models\Ad;  
@@ -75,17 +76,23 @@ class PaymentController extends Controller
 
                 if ($transaction->save()) {
 
+                    $now = Carbon::now()->addMonths(3);
+
                     if($payment_status['data']['metadata']['payment_type'] == 'Cv Activation'){
                         $cv = $this->cv->getSingleCv([
                             ['unique_id', '=', $payment_status['data']['metadata']['_unique_id']],
                         ]);
                         $cv->status = 'confirm';
+                        $cv->activation_date = Carbon::now()->toDateTimeString();
+                        $cv->duration_period = $now->toDateTimeString();
                         $cv->save();
                     }else{
                         $ad = $this->ad->getSingleAd([
                             ['unique_id', '=', $payment_status['data']['metadata']['_unique_id']]
                         ]);
                         $ad->status = 'confirm';
+                        $ad->activation_date = Carbon::now()->toDateTimeString();
+                        $ad->duration_period = $now->toDateTimeString();
                         $ad->save();
                     }
 

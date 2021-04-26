@@ -91,7 +91,7 @@ function showSuccessToaster(message, tooastType) {
 </script> 
 
 {{--confirm ads--}}
-@php $confirmAds = ['confirm-ads', 'comfirm-cvs'];  @endphp
+@php $confirmAds = ['confirm-ads', 'comfirm-cvs', 'all-products', 'all-cvs', 'all-boost-ads'];  @endphp
 @php $currentPageName = Request::segment(1); @endphp
 @if(in_array($currentPageName, $confirmAds))
     @include('js_files.ads_js')

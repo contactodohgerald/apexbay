@@ -51,8 +51,8 @@
                                 <div class="card">
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs profile-tab" role="tablist">
-                                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#create-cvs" role="tab">Post Products & Services</a> </li>
-                                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab"> Post Work CVs</a> </li>
+                                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#create-cvs" role="tab">Post products</a> </li>
+                                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Post Jobs</a> </li>
                                     </ul>
                                     <!-- Tab panes -->
                                     <div class="tab-content">
@@ -280,8 +280,8 @@
 
                                                                         <div class="col-lg-6">
                                                                             <div class="form-group">
-                                                                                <label for="native">Native</label>
-                                                                                <input type="text" class="form-control" name="native" id="native" placeholder="Native">
+                                                                                <label for="state">State</label>
+                                                                                <input type="text" class="form-control" name="native" id="state" placeholder="State">
                                                                             </div>
                                                                         </div>
 
@@ -321,15 +321,16 @@
 
                                                                         <div class="col-lg-12">
                                                                             <div class="form-group">
-                                                                                <label for="cv-categories">Cv Categories </label>
-                                                                                <select class="form-control cv-categories" id="cv-categories" name="cv-categories">
+                                                                                <label for="cv-categories">Choice of Work <small>(eg: Nurse, Secretary, Chef)</small></label>
+                                                                                <input type="text" class="form-control" id="cv-categories" name="cv-categories" placeholder="Choice of Work">
+                                                                                {{-- <select class="form-control cv-categories" id="cv-categories" name="cv-categories">
                                                                                     @if(count($cvCategory) > 0)
                                                                                         <option value="">Please Select</option>
                                                                                         @foreach($cvCategory as $k => $each_cv_category)
                                                                                         <option value="{{$each_cv_category->unique_id}}">{{$each_cv_category->cv_category_title}}</option>
                                                                                         @endforeach
                                                                                     @endif
-                                                                                </select>
+                                                                                </select> --}}
                                                                             </div>
                                                                         </div>
 

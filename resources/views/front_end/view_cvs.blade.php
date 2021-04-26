@@ -102,59 +102,59 @@
                                                     <span class="font-bold">Work Experience:</span>
                                                     {{$cv->work_experience}} Year</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class=" col-12">
                                                     <span class="font-bold">Job Type:</span>
                                                     {{($cv->job_type == 'full_time')?'Full Time':'Part Time' }}
                                                 </p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class=" col-12">
                                                     <span class="font-bold">Gender:</span>
                                                     {{ucfirst($cv->gender)}}</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Marital Status:</span>
                                                     {{ucfirst($cv->marital_status)}}
                                                 </p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Age:</span>
                                                     {{ucfirst($cv->age)}} Year</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Education:</span>
                                                     {{ucfirst($cv->education)}}</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Still Studying:</span>
                                                     {{ucfirst($cv->studying_status)}}</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Skills:</span>
                                                     {{ucfirst($cv->skills)}}</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Languages:</span>
                                                     {{ucfirst($cv->language)}}</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Certification:</span>
                                                     {{ucfirst($cv->certification)}}</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Highest Qualification:</span>
                                                     {{ucfirst($cv->qualifications)}}</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Native:</span>
                                                     {{ucfirst($cv->native)}}</p>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Addition Details:</span>
                                                     {{ucfirst($cv->additional_details)}}</p>
                                                 <br/>
-                                                <h5 class="m-t-30 col-12">₦ {{number_format($cv->price1)}} - {{number_format($cv->price2)}}</h5>
+                                                <h5 class="col-12">₦ {{number_format($cv->price1)}} - {{number_format($cv->price2)}}</h5>
                                                 <br/>
-                                                <p class="m-t-30 col-12">
+                                                <p class="col-12">
                                                     <span class="font-bold">Agent:</span>
                                                     {{ucfirst($cv->users->name)}}
                                                 </p>
@@ -225,35 +225,33 @@
 
                                             
                                             <h5 class="m-t-20 m-b-10 m-l-40 font-bold">Similar Ads</h5>
-                                            @if(count($ads) > 0)
-                                                @foreach($ads as $ee => $each_ads)
+                                            {{-- @if(count($cvs) > 0)
+                                                @foreach($cvs as $ss => $each_cvs)
+                                                    @if ($cv->unique_id == $each_cvs->unique_id)
+                                                        @continue                                                        
+                                                    @endif
                                                     <div class="card shadow rounded custom-card">
                                                         <div class="row g-0">
                                                             <div class="col-4 col-lg-3">
-                                                                <a href="{{route('ad-details', $each_ads->unique_id)}}">
-                                                                    @foreach($each_ads->ad_files_get as $oo => $each_image)
-                                                    
-                                                                    @if($oo == 1)
-                                                                        @break
-                                                                    @endif
-                                                                    <img src="{{asset('storage/product_image/'.$each_image->ad_files)}}" class="img-fluid imageFit" alt="{{env('APP_NAME')}}">
-                                                                    @endforeach
+                                                                <a href="{{route('cv-details', $each_cvs->unique_id)}}">
+                                                                    <img src="{{asset('storage/cover_image/'.$each_cvs->cover_image)}}" class="img-fluid imageFit" alt="{{env('APP_NAME')}}">
                                                                 </a>
                                                             </div>
                                                             <div class="col-8 col-lg-9">
                                                                 <div class="card-body">
                                                                     <h5 class="card-title no-margin-bottom textBlack">
-                                                                        <a href="{{route('ad-details', $each_ads->unique_id)}}">{{ucfirst($each_ads->ad_title)}}</a>
+                                                                        <a href="{{route('cv-details', $each_cvs->unique_id)}}">{{ucfirst($each_cvs->full_name)}}</a>
                                                                     </h5>
                                                                     <p class="card-text">
-                                                                        <small class="text-danger font-bold">- {{ ucfirst($each_ads->users->name) }}</small>
+                                                                        <small class="text-danger font-bold">- {{ ucfirst($each_cvs->users->name) }}</small>
                                                                     </p>
-                                                                    <p class="font14">{{substr($each_ads->ad_desc, 0, 80)}}... <a href="{{route('ad-details', $each_ads->unique_id)}}">Read more</a></p>
-                                                                    <p class="card-text text-primary font-bold">₦ {{number_format($each_ads->balance)}}</p>
+                                                                    <p class="font14"><b>Work Experience:</b> {{ $each_cvs->work_experience }} Years</p>
+                                                                    <p class="font14"><b>Job Type:</b> {{ ($each_cvs->job_type == 'full_time')?'Full Time':'Part Time' }}</p>
+                                                                    <p class="card-text text-primary font-bold">₦ {{number_format($each_cvs->price1)}} - {{number_format($each_cvs->price2)}}</p>
                                                                     
                                                                     <div class="like-comm">
-                                                                        <small class="text-muted"><i class="fa fa-eye"></i>{{$each_ads->views}} views</small>
-                                                                        <small class="text-muted"><i class="fa fa-circle font-size-half"></i>{{$each_ads->created_at->diffForHumans()}}</small> 
+                                                                        <small class="text-muted"><i class="fa fa-eye"></i>{{$each_cvs->views}} views</small>
+                                                                        <small class="text-muted"><i class="fa fa-circle font-size-half"></i>{{$each_cvs->created_at->diffForHumans()}}</small> 
                                                                     </div>
                                                                     
                                                                 </div>
@@ -261,7 +259,48 @@
                                                         </div>
                                                     </div>
                                                 @endforeach
-                                            @endif
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                                        <ul class="pagination mt-0">
+                                                            <li class="page-item">
+                                                                <a class="page-link" href="{{$cvs->previousPageUrl()}}" aria-label="Previous">
+                                                                <span class="ti-arrow-left"></span>
+                                                                <span class="sr-only">Previous</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="page-item active"><a class="page-link" href="javascript:;">{{$cvs->currentPage()}}</a></li>
+                                                            <li class="page-item">
+                                                                <a class="page-link" href="{{$cvs->nextPageUrl()}}" aria-label="Next">
+                                                                <span class="ti-arrow-right"></span>
+                                                                <span class="sr-only">Next</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            @else
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                                    <div class="alert alert-success text-center mt-5">
+                                                        <h3>They arent any similar ad's avaliable yet</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endif --}}
+
+                                            <div class="row">
+                                                <div class="col-md-12" id="post-data">
+                                                    @include('front_end.data')
+                                                </div>
+
+                                                <div class="col-md-12 text-center mb-2">
+                                                    <div class="ajax-load" style="display: none">
+                                                        <p><img src="{{ asset('loader.gif') }}" alt="{{ env('APP_NAME') }}" width="50" height="50"> Loading More Jobs ...</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
                                         </div>
                                         
                                     </div>

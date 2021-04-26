@@ -56,20 +56,15 @@
                                                 </div>
                                                 <div class="teamgrid-content text-left">
                                                     <div class="container">
-                                                        <p><b>{{ env('APP_NAME') }}</b> ltd is in business of making micro, small and medium scale to survive. We support them on product and service promotion or advertising,  Training and outsourcing staff</p>
+                                                        We are online business and job advertisment company poised to consistently create scaleing up value chain within micro, small and medium scale entreprises in Nigeria through hamonizing
 
-                                                    <p>Micro, small and medium scale entreprises are the core driver of any economy, therefore repositioning the traditional business model becomes eminent.</p>
+                                                        <ol>
+                                                            <li>Business owners </li>
+                                                            <li>Their Products or Services and</li>
+                                                            <li>Their employees under one roof.</li>
+                                                        </ol> 
 
-                                                    <p>We have identified what we call "the big 3" which must be in a common place under one roof: The are, </p>
-
-                                                    <ol>
-                                                        <li>Business owners or Companies.</li>
-                                                        <li>Products or Services.</li>
-                                                        <li>Job seekers or employees.</li>
-                                                    </ol>
-
-                                                    <p>For a decade and counting, we training and outsource staff to our small businesses. 
-                                                        Training and retraining staff on common customer service excellence and selling skills, abilty to negotiate your way to close deal in small businesses are key in keeping them afflort.</p>
+                                                        We equally train and outsource staff to our small businesses.
                                                     </div>
                                                     
                                                 </div>
@@ -85,7 +80,7 @@
                                                                 <p>support@apexbay.com.ng</p>
                                                             </div>
                                                             <div class="col-lg-4 text-center">
-                                                                <h2>Phone Number:</h2>
+                                                                <h2>WhatsApp Only:</h2>
                                                                 <p>07054349455</p>
                                                             </div>
                                                         </div>
