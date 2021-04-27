@@ -99,6 +99,10 @@
                                             </div>
                                             <div class="row m-t-30 bg-orange text-white p-50">
                                                 <p class="col-12">
+                                                    <span class="font-bold">Choice Of Work:</span>
+                                                    {{$cv->cv_category_unique_id}}</p>
+                                                <br/>
+                                                <p class="col-12">
                                                     <span class="font-bold">Work Experience:</span>
                                                     {{$cv->work_experience}} Year</p>
                                                 <br/>

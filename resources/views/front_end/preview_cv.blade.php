@@ -57,7 +57,7 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="alert alert-success">
-                                                    <h2 class="text-center">This CV can not be seen by the rest of the public upon you activate it with the sum of ₦ 1,000. <br> <a href="{{route('cv-activation', $cv->unique_id)}}">Click here</a> to activate this product</h2>
+                                                    <h2 class="text-center">This CV can not be seen by the rest of the public upon you activate it with the sum of ₦ 500. <br> <a href="{{route('cv-activation', $cv->unique_id)}}">Click here</a> to activate this product</h2>
                                                 </div>
                                             </div>
                                         </div>
@@ -105,6 +105,10 @@
                                                 </div>
                                             </div>
                                             <div class="row m-t-30 bg-orange text-white p-50">
+                                                <p class="col-12">
+                                                    <span class="font-bold">Choice Of Work:</span>
+                                                    {{$cv->cv_category_unique_id}}</p>
+                                                <br/>
                                                 <p class="col-12">
                                                     <span class="font-bold">Work Experience:</span>
                                                     {{$cv->work_experience}} Year</p>

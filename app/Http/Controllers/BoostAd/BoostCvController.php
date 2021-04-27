@@ -5,51 +5,51 @@ namespace App\Http\Controllers\BoostAd;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Ad;  
-use App\Models\BoostAd;
+use App\Models\BoostCv;
 use App\Traits\Generics;
 use Exception;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
-class BoostAdController extends Controller
+class BoostCvController extends Controller
 {
     //
     Use Generics;
 
-    function __construct(Ad $ad, BoostAd $BoostAd){
-        $this->middleware('auth', ['except' => ['deleteBoostAds', 'updeteBoostAdsStatus', 'boostAdPage']]);
+    function __construct(Ad $ad, BoostCv $BoostCv){
+        $this->middleware('auth', ['except' => ['deleteBoostCvs', 'updeteBoostCvsStatus', 'boostCvPage']]);
         $this->ad = $ad;
-        $this->BoostAd = $BoostAd;
+        $this->BoostCv = $BoostCv;
     }
 
-    public function boostAdPage(Request $request){
+    public function boostCvPage(Request $request){
 
-        $boosted_ads = $this->BoostAd->getBoostAdByPaginate(5,[
+        $boosted_cvs = $this->BoostCv->getBoostCvByPaginate(5,[
             ['status', '=', 'on'],
         ]);
 
-        foreach($boosted_ads as $each_boost_ad){
+        foreach($boosted_cvs as $each_boost_cv){
 
-            $each_boost_ad->users;
+            $each_boost_cv->users;
 
         }
 
         $view = [
-            'boosted_ads'=>$boosted_ads,
+            'boosted_cvs'=>$boosted_cvs,
         ];
 
         if($request->ajax()){
-            $views = view('front_end.boost_ads_data', compact('boosted_ads'))->render();
+            $views = view('front_end.boost_cvs_data', compact('boosted_cvs'))->render();
             return response()->json(['html'=>$views]);
         }   
 
-        return view('front_end.boost_ads', $view);
+        return view('front_end.boost_cvs', $view);
     }
 
-    public function createBoostAdInterface(){
+    public function createBoostCvInterface(){
 
-        return view('admin_dashboard.add_boosted_ads');
+        return view('admin_dashboard.add_boosted_cvs');
 
     }
 
@@ -61,7 +61,7 @@ class BoostAdController extends Controller
         ]);
     }
 
-    public function addBoostedAds(Request $request){
+    public function addBoostedCvs(Request $request){
         $data = $request->all();
         $user = Auth::user();
 
@@ -75,21 +75,21 @@ class BoostAdController extends Controller
 
                 $file = $request->file('add_banner');
                 $add_banner = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
-                $file->storeAs('public/boost_add', $add_banner);
+                $file->storeAs('public/boost_cvs', $add_banner);
             }
 
-            $unique_id = $this->createUniqueId('boost_ads', 'unique_id');
+            $unique_id = $this->createUniqueId('boost_cvs', 'unique_id');
 
-            $boostAdds = new BoostAd();
+            $boostCvs = new BoostCv();
           
-            $boostAdds->unique_id = $unique_id;
-            $boostAdds->user_unique_id = $user->unique_id;
-            $boostAdds->phone_number = $data['phone'];
-            $boostAdds->add_image = $add_banner;
-            $boostAdds->description = $data['description'];
+            $boostCvs->unique_id = $unique_id;
+            $boostCvs->user_unique_id = $user->unique_id;
+            $boostCvs->phone_number = $data['phone'];
+            $boostCvs->boost_cv_image = $add_banner;
+            $boostCvs->description = $data['description'];
 
-            if ($boostAdds->save()) {
-                return redirect()->back()->with('success', 'Boosted Ad Was Successfully Created');
+            if ($boostCvs->save()) {
+                return redirect()->back()->with('success', 'Boosted Cv Was Successfully Created');
             } else {
                 return redirect()->back()->with('error', 'An Error occurred, Please try Again Later');
             }
@@ -98,26 +98,26 @@ class BoostAdController extends Controller
             $errorsArray = $exception->getMessage();
             return  redirect()->back()->with('error', $errorsArray);
         }
-    } 
+    }
 
-    public function getAllBoostedAds(){
+    public function getAllBoostedCvs(){
         $query = [
             ['deleted_at', null]
         ];
-        $boostAd = $this->BoostAd->getAllBoostAd($query);
+        $boostCv = $this->BoostCv->getAllBoostCv($query);
 
-        foreach($boostAd as $each_boost_ad){
+        foreach($boostCv as $each_boost_cv){
 
-            $each_boost_ad->users;
+            $each_boost_cv->users;
 
         }
 
         $view = [
-            'boostAd'=>$boostAd,
+            'boostCv'=>$boostCv,
         ];
 
 
-        return view('admin_dashboard.all_boosted_ad', $view);
+        return view('admin_dashboard.all_boosted_cvs', $view);
     }
 
     function handleValidations(array $data)
@@ -130,8 +130,7 @@ class BoostAdController extends Controller
         return $validator;
     }
 
-
-    public function deleteBoostAds(Request $request)
+    public function deleteBoostCvs(Request $request)
     {
         try {
 
@@ -144,11 +143,11 @@ class BoostAdController extends Controller
 
             foreach ($dataArray as $eachDataArray) {
 
-                //get the a single ad to delete
-                $BoostAd = $this->BoostAd->selectSingleBoostAd($eachDataArray);
-                $BoostAd->delete();
+                //get the a single cv to delete
+                $BoostCv = $this->BoostCv->selectSingleBoostCv($eachDataArray);
+                $BoostCv->delete();
             }
-            return response()->json(['error_code' => 0, 'success_statement' => 'Selected Ad has been deleted successfully']);
+            return response()->json(['error_code' => 0, 'success_statement' => 'Selected Cv has been deleted successfully']);
         } catch (Exception $exception) {
 
             $error = $exception->getMessage();
@@ -156,7 +155,7 @@ class BoostAdController extends Controller
         }
     }
 
-    public function updeteBoostAdsStatus(Request $request)
+    public function updeteBoostCvsStatus(Request $request)
     {
         try {
 
@@ -170,16 +169,15 @@ class BoostAdController extends Controller
             foreach ($dataArray as $eachDataArray) {
 
                 //update the boost ad status
-                $BoostAd = $this->BoostAd->selectSingleBoostAd($eachDataArray);
-                $BoostAd->status = $request->action;
-                $BoostAd->save();
+                $BoostCv = $this->BoostCv->selectSingleBoostCv($eachDataArray);
+                $BoostCv->status = $request->action;
+                $BoostCv->save();
             }
-            return response()->json(['error_code' => 0, 'success_statement' => 'Selected Ad(s) was updated successfully']);
+            return response()->json(['error_code' => 0, 'success_statement' => 'Selected Cv(s) was updated successfully']);
         } catch (Exception $exception) {
 
             $error = $exception->getMessage();
             return response()->json(['error_code' => 1, 'error_message' => ['general_error' => [$error]]]);
         }
     }
-
 }

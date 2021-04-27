@@ -7,6 +7,7 @@ use App\Http\Controllers\Subscription\SubscribeController;
 use App\Http\Controllers\AppSettings\AppSettingsController;  
 use App\Http\Controllers\Ad\ProductCommentController; 
 use App\Http\Controllers\BoostAd\BoostAdController; 
+use App\Http\Controllers\BoostAd\BoostCvController; 
 use App\Http\Controllers\User\UsersController; 
 use App\Http\Controllers\User\UserControllerHandler;
 use App\Http\Controllers\CVs\CVsController;    
@@ -48,6 +49,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/cv-activation/{unique_id?}', [SubscribeController::class, 'cvCheckOutPage'])->name('cv-activation');  
     
     Route::get('/boost-ad', [BoostAdController::class, 'boostAdPage'])->name('boost-ad');  
+
+    Route::get('/boost-cv', [BoostCvController::class, 'boostCvPage'])->name('boost-cv');  
 
     Route::get('/app-settings', [AppSettingsController::class, 'appSettingsInterface'])->name('app-settings');  
     Route::get('/store-settings', [AppSettingsController::class, 'storeSettings'])->name('store-settings');   
@@ -119,6 +122,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/create-boost-ads', [BoostAdController::class, 'createBoostAdInterface'])->name('create-boost-ads'); 
     Route::get('/all-boost-ads', [BoostAdController::class, 'getAllBoostedAds'])->name('all-boost-ads'); 
     Route::post('/add-boost-ads', [BoostAdController::class, 'addBoostedAds'])->name('add-boost-ads'); 
+
+    Route::get('/create-boost-cvs', [BoostCvController::class, 'createBoostCvInterface'])->name('create-boost-cvs'); 
+    Route::get('/all-boost-cvs', [BoostCvController::class, 'getAllBoostedCvs'])->name('all-boost-cvs'); 
+    Route::post('/add-boost-cvs', [BoostCvController::class, 'addBoostedCvs'])->name('add-boost-cvs'); 
     
     
 });

@@ -6,6 +6,7 @@ use App\Http\Controllers\Ad\AdController;
 use App\Http\Controllers\CVs\CVsController;  
 use App\Http\Controllers\User\UserControllerHandler; 
 use App\Http\Controllers\BoostAd\BoostAdController; 
+use App\Http\Controllers\BoostAd\BoostCvController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +38,9 @@ Route::post('/deleteTransaction', [SubscribeController::class, 'deleteTransactio
 Route::post('/deleteBoostAds', [BoostAdController::class, 'deleteBoostAds'])->name('deleteBoostAds');
 
 Route::post('/updeteBoostAdsStatus', [BoostAdController::class, 'updeteBoostAdsStatus'])->name('updeteBoostAdsStatus');
+
+Route::post('/deleteBoostCvs', [BoostCvController::class, 'deleteBoostCvs'])->name('deleteBoostCvs');
+
+Route::post('/updeteBoostCvsStatus', [BoostCvController::class, 'updeteBoostCvsStatus'])->name('updeteBoostCvsStatus');
 
 

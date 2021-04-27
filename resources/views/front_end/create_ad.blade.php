@@ -170,6 +170,47 @@
                                                                     <div class="row">
                                                                         <div class="col-lg-12">
                                                                             <div class="form-group">
+                                                                                <label for="cv-categories">Choice of Work <small>(eg: Nurse, Secretary, Chef)</small></label>
+                                                                                <input type="text" class="form-control" id="cv-categories" name="cv-categories" placeholder="Choice of Work">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12">
+                                                                            <div class="form-group">
+                                                                                <label for="education">Skills <small>(seprate each skills with a comma)</small></label>
+                                                                                <input type="text" class="form-control" name="skills" id="skills" placeholder="Skills">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12">
+                                                                            <div class="form-group">
+                                                                                <label for="physical-address">Expected Salary </label>
+                                                                                <div class="input-group mb-2">
+                                                                                    <div class="input-group-prepend">
+                                                                                        <input type="number" id="price1" name="price1"placeholder="From" class="form-control browser-default"> 
+                                                                                    </div> 
+                                                                                    <input type="number" id="price2" name="price2" placeholder="To" class="form-control browser-default"> 
+                                                                                    <div class="input-group-append"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-6">
+                                                                            <div class="form-group">
+                                                                                <label for="work_experience">Working Experience</label>
+                                                                                <input type="number" class="form-control" name="work_experience" id="work_experience" placeholder="Working Experience">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-6">
+                                                                            <div class="form-group">
+                                                                                <label for="marital_status">Marital Status </label>
+                                                                                <select name="marital_status" id="marital_status" class="form-control" >
+                                                                                    <option value="">Please Select</option>
+                                                                                    <option value="single">Single</option>
+                                                                                    <option value="married">Married</option>
+                                                                                    <option value="divorce">Divorce</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12">
+                                                                            <div class="form-group">
                                                                                 <label for="full_name">Full Name </label>
                                                                                 <input type="text" class="form-control" name="full_name" id="full_name" placeholder="Full Name">
                                                                             </div>
@@ -185,17 +226,7 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="col-lg-6">
-                                                                            <div class="form-group">
-                                                                                <label for="marital_status">Marital Status </label>
-                                                                                <select name="marital_status" id="marital_status" class="form-control" >
-                                                                                    <option value="">Please Select</option>
-                                                                                    <option value="single">Single</option>
-                                                                                    <option value="married">Married</option>
-                                                                                    <option value="divorce">Divorce</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
+                                                                       
 
                                                                         <div class="col-lg-6">
                                                                             <div class="form-group">
@@ -203,14 +234,6 @@
                                                                                 <input type="number" class="form-control" name="age" id="age" placeholder="Age">
                                                                             </div>
                                                                         </div>
-
-                                                                        <div class="col-lg-6">
-                                                                            <div class="form-group">
-                                                                                <label for="work_experience">Working Experience</label>
-                                                                                <input type="number" class="form-control" name="work_experience" id="work_experience" placeholder="Working Experience">
-                                                                            </div>
-                                                                        </div>
-
                                                                         <div class="col-lg-6">
                                                                             <div class="form-group">
                                                                                 <label for="job_type">Job Type </label>
@@ -239,14 +262,6 @@
                                                                                 <input type="text" class="form-control" name="education" id="education" placeholder="Eduction (E.g: what school you attended)">
                                                                             </div>
                                                                         </div>
-
-                                                                        <div class="col-lg-12">
-                                                                            <div class="form-group">
-                                                                                <label for="education">Skills <small>(seprate each skills with a comma)</small></label>
-                                                                                <input type="text" class="form-control" name="skills" id="skills" placeholder="Skills">
-                                                                            </div>
-                                                                        </div>
-
                                                                         <div class="col-lg-12">
                                                                             <div class="form-group">
                                                                                 <label for="language">Languages <small>(seprate each languages with a comma)</small></label>
@@ -305,35 +320,6 @@
                                                                                 <input type="text" class="form-control" id="telegram_username" name="telegram_username" placeholder="Telegram Username">
                                                                             </div>
                                                                         </div>
-
-                                                                        <div class="col-lg-12">
-                                                                            <div class="form-group">
-                                                                                <label for="physical-address">Expected Salary </label>
-                                                                                <div class="input-group mb-2">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <input type="number" id="price1" name="price1"placeholder="From" class="form-control browser-default"> 
-                                                                                    </div> 
-                                                                                    <input type="number" id="price2" name="price2" placeholder="To" class="form-control browser-default"> 
-                                                                                    <div class="input-group-append"></div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="col-lg-12">
-                                                                            <div class="form-group">
-                                                                                <label for="cv-categories">Choice of Work <small>(eg: Nurse, Secretary, Chef)</small></label>
-                                                                                <input type="text" class="form-control" id="cv-categories" name="cv-categories" placeholder="Choice of Work">
-                                                                                {{-- <select class="form-control cv-categories" id="cv-categories" name="cv-categories">
-                                                                                    @if(count($cvCategory) > 0)
-                                                                                        <option value="">Please Select</option>
-                                                                                        @foreach($cvCategory as $k => $each_cv_category)
-                                                                                        <option value="{{$each_cv_category->unique_id}}">{{$each_cv_category->cv_category_title}}</option>
-                                                                                        @endforeach
-                                                                                    @endif
-                                                                                </select> --}}
-                                                                            </div>
-                                                                        </div>
-
                                                                         <div class="col-lg-12">
                                                                             <div class="form-group">
                                                                                 <label for="additional_details">Addition Details </label>

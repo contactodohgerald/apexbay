@@ -10,6 +10,7 @@ use App\Models\Ad;
 use App\Models\Cv;  
 use App\Models\AdFile; 
 use App\Models\BoostAd;
+use App\Models\BoostCv;
 use App\Models\AdCategory;
 use App\Models\CvCategory;
 use App\Models\ProductComment;
@@ -22,7 +23,7 @@ class AdControllerHandler extends Controller
     //
     Use Generics;
     function __construct(
-        AdCategory $adCategory, Ad $ad, AdFile $adFile, Cv $cv, CvCategory $cvCategory, BoostAd $BoostAd
+        AdCategory $adCategory, Ad $ad, AdFile $adFile, Cv $cv, CvCategory $cvCategory, BoostAd $BoostAd, BoostCv $BoostCv
         ){
         $this->adCategory = $adCategory;
         $this->cvCategory = $cvCategory;
@@ -30,6 +31,7 @@ class AdControllerHandler extends Controller
         $this->adFile = $adFile;
         $this->cv = $cv;
         $this->BoostAd = $BoostAd;
+        $this->BoostCv = $BoostCv;
     } 
 
     public function indexPage(Request $request){
@@ -57,6 +59,14 @@ class AdControllerHandler extends Controller
 
         foreach($boosted_ads as $each_boosted_ads){
             $each_boosted_ads->users;
+        }
+
+        $boosted_cvs = $this->BoostCv->getRandomSingleBoostCv([
+            ['status', '=', 'on'],
+        ]);
+
+        foreach($boosted_cvs as $each_boosted_cvs){
+            $each_boosted_cvs->users;
         }
 
         $ad_category_array = [];
@@ -104,9 +114,10 @@ class AdControllerHandler extends Controller
             'adCategory'=>$adCategory,
             'ads'=>$ads,
             'boosted_ads'=>$boosted_ads,
+            'boosted_cvs'=>$boosted_cvs,
             'cvs'=>$cvs,
         ];
-
+      
         if($request->ajax()){
             $views = view('front_end.data', compact('cvs'))->render();
             return response()->json(['html'=>$views]);
