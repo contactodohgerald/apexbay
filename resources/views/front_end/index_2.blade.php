@@ -50,88 +50,90 @@
                                 <div class="card">
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs profile-tab" role="tablist">
-                                        <li class="nav-item"> <a class="nav-link active" href="{{ '/' }}">Products & Services</a> </li>
-                                        <li class="nav-item"> <a class="nav-link" href="{{ route('index-page') }}">Seeking Work - CVs</a> </li>
+                                        <li class="nav-item"> <a class="nav-link" href="{{ '/' }}">Products & Services</a> </li>
+                                        <li class="nav-item"> <a class="nav-link active" href="{{ route('index-page') }}">Seeking Work - CVs</a> </li>
                                     </ul>
                                     <!-- Tab panes -->
                                     <div class="tab-content">
-                                        <div class="tab-pane active" id="home" role="tabpanel">
+                                       
+                                        <!--second tab-->
+                                        <div class="tab-pane active" id="profile" role="tabpanel">
                                             <div class="row">
-                                                @if(count($boosted_ads) > 0)
-                                                    @foreach($boosted_ads as $each_ads)
-                                                    <div class="col-lg-12 mt-2">
-                                                            <div class="container site_color_dark">   
-                                                                <div class="row">
-                                                                    <div class="col-lg-12">
-                                                                        <ul class="iuhyt_list mt-3">
-                                                                            <li><a href="{{ route('boost-ad') }}">Boosted Ads</a></li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <div class="col-lg-8 offset-lg-2">
-                                                                        <div class="image-sector2">
-                                                                            <div class="row">
-                                                                                <div class="col-md-12" style="width: 100%; height: 250px;">
-                                                                                    <img src="{{asset('storage/boost_add/'.$each_ads->add_image)}}" class="img-fluid" alt="{{env('APP_NAME')}}" style="width: 100%; height: 100%;">
-                                                                                </div>
-                                                                                <div class="col-md-12">
-                                                                                <h2 class="mt-2 mb-3" style="text-align:center;">
-                                                                                    <a href="javascript:;"  style="color:#fff">{{$each_ads->phone_number}} </a>
-                                                                                </h2>
-                                                                                </div>
+                                                @if(count($boosted_cvs) > 0)
+                                                @foreach($boosted_cvs as $each_cvs)
+                                                <div class="col-lg-12 mt-2">
+                                                        <div class="container site_color_dark">   
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <ul class="iuhyt_list mt-3">
+                                                                        <li><a href="{{ route('boost-cv') }}">Boosted Cvs</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col-lg-8 offset-lg-2">
+                                                                    <div class="image-sector2">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12" style="width: 100%; height: 250px;">
+                                                                                <img src="{{asset('storage/boost_cvs/'.$each_cvs->boost_cv_image)}}" class="img-fluid" alt="{{env('APP_NAME')}}" style="width: 100%; height: 100%;">
+                                                                            </div>
+                                                                            <div class="col-md-12">
+                                                                            <h2 class="mt-2 mb-3" style="text-align:center;">
+                                                                                <a href="javascript:;"  style="color:#fff">{{$each_cvs->phone_number}} </a>
+                                                                            </h2>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>                                                       
-                                                            </div>
+                                                                </div>
+                                                            </div>                                                       
                                                         </div>
-                                                    @endforeach
+                                                    </div>
+                                                @endforeach
                                                 @endif
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-md-12" id="post-data-ad">
-                                                    @include('front_end.data_ad')
+                                                <div class="col-md-12" id="post-data-cv">
+                                                    @include('front_end.data')
                                                 </div>
 
                                                 <div class="col-md-12 text-center mb-2">
-                                                    <div class="ajax-load" style="display: none">
+                                                    <div class="ajax-load-cv" style="display: none">
                                                         <p><img src="{{ asset('loader.gif') }}" alt="{{ env('APP_NAME') }}" width="50" height="50"> Loading More Jobs ...</p>
                                                     </div>
                                                 </div>
                                             </div>
 
+
                                             <div class="row">
-                                                @if(count($boosted_ads) > 0)
-                                                    @foreach($boosted_ads as $each_ads)
-                                                    <div class="col-lg-12 mt-2">
-                                                            <div class="container site_color_dark">   
-                                                                <div class="row">
-                                                                    <div class="col-lg-12">
-                                                                        <ul class="iuhyt_list mt-3">
-                                                                            <li><a href="{{ route('boost-ad') }}">Boosted Ads</a></li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <div class="col-lg-8 offset-lg-2">
-                                                                        <div class="image-sector2">
-                                                                            <div class="row">
-                                                                                <div class="col-md-12" style="width: 100%; height: 250px;">
-                                                                                    <img src="{{asset('storage/boost_add/'.$each_ads->add_image)}}" class="img-fluid" alt="{{env('APP_NAME')}}" style="width: 100%; height: 100%;">
-                                                                                </div>
-                                                                                <div class="col-md-12">
-                                                                                <h2 class="mt-2 mb-3" style="text-align:center;">
-                                                                                    <a href="javascript:;"  style="color:#fff">{{$each_ads->phone_number}} </a>
-                                                                                </h2>
-                                                                                </div>
+                                                @if(count($boosted_cvs) > 0)
+                                                @foreach($boosted_cvs as $each_cvs)
+                                                <div class="col-lg-12 mt-2">
+                                                        <div class="container site_color_dark">   
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <ul class="iuhyt_list mt-3">
+                                                                        <li><a href="{{ route('boost-cv') }}">Boosted Cvs</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col-lg-8 offset-lg-2">
+                                                                    <div class="image-sector2">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12" style="width: 100%; height: 250px;">
+                                                                                <img src="{{asset('storage/boost_cvs/'.$each_cvs->boost_cv_image)}}" class="img-fluid" alt="{{env('APP_NAME')}}" style="width: 100%; height: 100%;">
+                                                                            </div>
+                                                                            <div class="col-md-12">
+                                                                            <h2 class="mt-2 mb-3" style="text-align:center;">
+                                                                                <a href="javascript:;"  style="color:#fff">{{$each_cvs->phone_number}} </a>
+                                                                            </h2>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>                                                       
-                                                            </div>
+                                                                </div>
+                                                            </div>                                                       
                                                         </div>
-                                                    @endforeach
+                                                    </div>
+                                                @endforeach
                                                 @endif
-                                            </div>
-
+                                            </div>                                            
                                         </div>
                                     </div>
                                 </div>
@@ -183,31 +185,31 @@
     var page = 1;
     $(window).scroll(function() {
         if($(window).scrollTop() + $(window).height() >= $(document).height()) {
-            page++;
+            page++;       
 
-            loadMoreAdData(page);
+            loadMoreCvData(page);
 
         }
     });
 
-    function loadMoreAdData(page){
+    function loadMoreCvData(page){
         $.ajax({
-            url: ENDPOINT + "?page=" + page,
+            url: ENDPOINT + "/index-page?page=" + page,
             type:'get',
             beforeSend: function(){
-                $('.ajax-load').show();
+                $('.ajax-load-cv').show();
             }
         })
         .done(function(data){
             if(data.html == ""){
-            $('.ajax-load').html("No more records found");
-            return;
+              $('.ajax-load-cv').html("No more records found");
+              return;
             }
-        $('.ajax-load').hide();
-        $("#post-data-ad").append(data.html);
+          $('.ajax-load-cv').hide();
+          $("#post-data-cv").append(data.html);
         })
         .fail(function(jqXHR, ajaxOptions, thrownError){
-            $('.ajax-load').html("Server no responding...");
+            $('.ajax-load-cv').html("Server no responding...");
         });
     } 
     

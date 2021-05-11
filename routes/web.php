@@ -38,6 +38,7 @@ Route::get('/about-us', function () {
 //front-end
 Route::group(['middleware' => 'web'], function () {
     Route::get('/', [AdControllerHandler::class, 'indexPage'])->name('/'); 
+    Route::get('/index-page', [AdControllerHandler::class, 'indexPage2'])->name('index-page'); 
     Route::get('/create-ad', [AdControllerHandler::class, 'createAd'])->name('create-ad'); 
     Route::get('/ad-file-upload/{unique_id?}', [AdControllerHandler::class, 'adFileInterface'])->name('ad-file-upload'); 
     Route::post('/store-ad', [AdControllerHandler::class, 'storeAdPost'])->name('store-ad')->middleware('auth');

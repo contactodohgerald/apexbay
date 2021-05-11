@@ -45,28 +45,12 @@ class AdControllerHandler extends Controller
 
         //return $ads;
 
-        $cvs = $this->cv->getCvByPaginate(5,[
-            ['status', '=', 'confirm'],
-        ]);
-
-        foreach($cvs as $vv => $each_cvs){
-            $each_cvs->users;
-        }
-
         $boosted_ads = $this->BoostAd->getRandomSingleBoostAd([
             ['status', '=', 'on'],
         ]);
 
         foreach($boosted_ads as $each_boosted_ads){
             $each_boosted_ads->users;
-        }
-
-        $boosted_cvs = $this->BoostCv->getRandomSingleBoostCv([
-            ['status', '=', 'on'],
-        ]);
-
-        foreach($boosted_cvs as $each_boosted_cvs){
-            $each_boosted_cvs->users;
         }
 
         $ad_category_array = [];
@@ -110,27 +94,52 @@ class AdControllerHandler extends Controller
            
         }
 
+        if($request->ajax()){
+            $ad_views = view('front_end.data_ad', compact('ads'))->render();
+            return response()->json(['html'=>$ad_views]);
+        }  
+
         $view = [
             'adCategory'=>$adCategory,
             'ads'=>$ads,
             'boosted_ads'=>$boosted_ads,
-            'boosted_cvs'=>$boosted_cvs,
-            'cvs'=>$cvs,
         ];
-      
-        if($request->ajax()){
-            $views = view('front_end.data', compact('cvs'))->render();
-            return response()->json(['html'=>$views]);
-        }   
-        
-        if($request->ajax()){
-            $views = view('front_end.data_ad', compact('ads'))->render();
-            return response()->json(['html'=>$views]);
-        }
 
         return view('front_end.index', $view);
     } 
-    
+
+    public function indexPage2(Request $request){
+
+        $cvs = $this->cv->getCvByPaginate(5,[
+            ['status', '=', 'confirm'],
+        ]);
+
+        foreach($cvs as $vv => $each_cvs){
+            $each_cvs->users;
+        }
+
+        $boosted_cvs = $this->BoostCv->getRandomSingleBoostCv([
+            ['status', '=', 'on'],
+        ]);
+
+        foreach($boosted_cvs as $each_boosted_cvs){
+            $each_boosted_cvs->users;
+        } 
+
+        //return $cvs;
+
+        if($request->ajax()){
+            $cv_views = view('front_end.data', compact('cvs'))->render();
+            return response()->json(['html'=>$cv_views]);
+        }  
+
+        $view = [
+            'boosted_cvs'=>$boosted_cvs,
+            'cvs'=>$cvs,
+        ];
+
+        return view('front_end.index_2', $view);
+    }
     
     public function createAd(){
         $adCategory = $this->adCategory->getAllAdCategory([

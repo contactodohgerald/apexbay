@@ -31,61 +31,6 @@
 @include('sweetalert::alert')
 
 <script>
-    function loadMoreData(page){
-        $.ajax({
-            url:'?page=' + page,
-            type:'get',
-            beforeSend: function(){
-                $('.ajax-load').show();
-            }
-        })
-        .done(function(data){
-            if(data.html == ""){
-              $('.ajax-load').html("No more records found");
-              return;
-            }
-          $('.ajax-load').hide();
-          $("#post-data").append(data.html);
-          console.log(data); return;
-        })
-        .fail(function(jqXHR, ajaxOptions, thrownError){
-            $('.ajax-load').html("Server no responding...");
-        });
-    } 
-    
-    function loadMoreAdData(page){
-        $.ajax({
-            url:'?page=' + page,
-            type:'get',
-            beforeSend: function(){
-                $('.ajax-load').show();
-            }
-        })
-        .done(function(data){
-            if(data.html == ""){
-              $('.ajax-load').html("No more records found");
-              return;
-            }
-          $('.ajax-load').hide();
-          $("#post-data-ad").append(data.html);
-        })
-        .fail(function(jqXHR, ajaxOptions, thrownError){
-            $('.ajax-load').html("Server no responding...");
-        });
-    }
-
-    var page = 1;
-    $(window).scroll(function(){
-        if($(window).scrollTop() + $(window).height() >= $(document).height()){
-            page++;
-            loadMoreData(page);
-
-            loadMoreAdData(page);
-        }
-    });
-</script>
-
-<script>
 
     $(document).ready(function(){
         $('.flexslider').flexslider({

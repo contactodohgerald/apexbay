@@ -1,4 +1,4 @@
-@foreach($ads as $ee => $each_ads)
+@foreach($ads as $each_ads)
 <div class="card shadow rounded custom-card">
     <div class="row g-0">
         <div class="col-4 col-lg-3">

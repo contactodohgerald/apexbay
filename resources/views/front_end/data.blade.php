@@ -14,7 +14,7 @@
                 <p class="card-text">
                     <small class="text-danger font-bold">- {{ ucfirst($each_cvs->users->name) }}</small>
                 </p>
-                <p class="font14"><b>Work Experience:</b> {{ $each_cvs->work_experience }} Years</p>
+                <p class="font14"><b>{{$each_cvs->cv_category_unique_id}}</p>
                 <p class="font14"><b>Job Type:</b> {{ ($each_cvs->job_type == 'full_time')?'Full Time':'Part Time' }}</p>
                 <p class="card-text text-primary font-bold">₦ {{number_format($each_cvs->price1)}} - {{number_format($each_cvs->price2)}}</p>
                 
