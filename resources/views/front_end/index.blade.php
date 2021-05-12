@@ -179,37 +179,18 @@
   @include('include.e_script')
 
   <script type="text/javascript">
+        
     var ENDPOINT = "{{ url('/') }}"
     var page = 1;
     $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() >= $(document).height()) {
+        
+        if (elementInViewport2(document.querySelector('#theFooter'))) {
+            // The element is visible, do something
             page++;
-
             loadMoreAdData(page);
+        } 
 
-        }
-    });
-
-    function loadMoreAdData(page){
-        $.ajax({
-            url: ENDPOINT + "?page=" + page,
-            type:'get',
-            beforeSend: function(){
-                $('.ajax-load').show();
-            }
-        })
-        .done(function(data){
-            if(data.html == ""){
-            $('.ajax-load').html("No more records found");
-            return;
-            }
-        $('.ajax-load').hide();
-        $("#post-data-ad").append(data.html);
-        })
-        .fail(function(jqXHR, ajaxOptions, thrownError){
-            $('.ajax-load').html("Server no responding...");
-        });
-    } 
+    }); 
     
 </script>
 

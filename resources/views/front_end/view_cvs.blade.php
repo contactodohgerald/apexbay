@@ -293,12 +293,12 @@
                                             @endif --}}
 
                                             <div class="row">
-                                                <div class="col-md-12" id="post-data">
+                                                <div class="col-md-12" id="post-data-cv">
                                                     @include('front_end.data')
                                                 </div>
 
                                                 <div class="col-md-12 text-center mb-2">
-                                                    <div class="ajax-load" style="display: none">
+                                                    <div class="ajax-load-cv" style="display: none">
                                                         <p><img src="{{ asset('loader.gif') }}" alt="{{ env('APP_NAME') }}" width="50" height="50"> Loading More Jobs ...</p>
                                                     </div>
                                                 </div>
@@ -351,6 +351,21 @@
 <!-- All Jquery -->
 <!-- ============================================================== -->
 @include('include.e_script')
+
+<script type="text/javascript">
+    var ENDPOINT = "{{ url('/') }}"
+    var page = 1;
+    $(window).scroll(function() {
+        
+        if (elementInViewport2(document.querySelector('#theFooter'))) {
+            // The element is visible, do something
+            page++;
+            loadMoreCvData(page);
+        } 
+
+    }); 
+    
+</script>
 
 </body>
 

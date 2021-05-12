@@ -184,34 +184,14 @@
     var ENDPOINT = "{{ url('/') }}"
     var page = 1;
     $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() >= $(document).height()) {
-            page++;       
-
+        
+        if (elementInViewport2(document.querySelector('#theFooter'))) {
+            // The element is visible, do something
+            page++;
             loadMoreCvData(page);
+        } 
 
-        }
-    });
-
-    function loadMoreCvData(page){
-        $.ajax({
-            url: ENDPOINT + "/index-page?page=" + page,
-            type:'get',
-            beforeSend: function(){
-                $('.ajax-load-cv').show();
-            }
-        })
-        .done(function(data){
-            if(data.html == ""){
-              $('.ajax-load-cv').html("No more records found");
-              return;
-            }
-          $('.ajax-load-cv').hide();
-          $("#post-data-cv").append(data.html);
-        })
-        .fail(function(jqXHR, ajaxOptions, thrownError){
-            $('.ajax-load-cv').html("Server no responding...");
-        });
-    } 
+    }); 
     
 </script>
 

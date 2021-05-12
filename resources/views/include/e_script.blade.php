@@ -32,6 +32,71 @@
 
 <script>
 
+function elementInViewport2(el) {
+    var top = el.offsetTop;
+    var left = el.offsetLeft;
+    var width = el.offsetWidth;
+    var height = el.offsetHeight;
+
+    while(el.offsetParent) {
+    el = el.offsetParent;
+    top += el.offsetTop;
+    left += el.offsetLeft;
+    }
+
+    return (
+    top < (window.pageYOffset + window.innerHeight) &&
+    left < (window.pageXOffset + window.innerWidth) &&
+    (top + height) > window.pageYOffset &&
+    (left + width) > window.pageXOffset
+    );
+}
+
+function loadMoreAdData(page){
+    $.ajax({
+        url: ENDPOINT + "?page=" + page,
+        type:'get',
+        beforeSend: function(){
+            $('.ajax-load').show();
+        }
+    })
+    .done(function(data){
+        if(data.html == ""){
+        $('.ajax-load').html("No more records found");
+        return;
+        }
+    $('.ajax-load').hide();
+    $("#post-data-ad").append(data.html);
+    })
+    .fail(function(jqXHR, ajaxOptions, thrownError){
+        $('.ajax-load').html("Server no responding...");
+    });
+} 
+
+function loadMoreCvData(page){
+    $.ajax({
+        url: ENDPOINT + "/index-page?page=" + page,
+        type:'get',
+        beforeSend: function(){
+            $('.ajax-load-cv').show();
+        }
+    })
+    .done(function(data){
+        if(data.html == ""){
+            $('.ajax-load-cv').html("No more records found");
+            return;
+        }
+        $('.ajax-load-cv').hide();
+        $("#post-data-cv").append(data.html);
+    })
+    .fail(function(jqXHR, ajaxOptions, thrownError){
+        $('.ajax-load-cv').html("Server no responding...");
+    });
+} 
+</script>
+
+<script>
+
     $(document).ready(function(){
         $('.flexslider').flexslider({
             animation: "slide",

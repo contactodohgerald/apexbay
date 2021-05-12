@@ -1,4 +1,4 @@
-<footer class="footer bg-footer" style="margin-left: 0">
+<footer class="footer bg-footer" id="theFooter" style="margin-left: 0">
     <div class="container">
 
         <div class="copy-right animated wow slideInUp" data-wow-delay=".2s">

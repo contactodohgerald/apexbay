@@ -302,6 +302,21 @@
 <!-- ============================================================== -->
 @include('include.e_script')
 
+<script type="text/javascript">
+   var ENDPOINT = "{{ url('/') }}"
+    var page = 1;
+    $(window).scroll(function() {
+        
+        if (elementInViewport2(document.querySelector('#theFooter'))) {
+            // The element is visible, do something
+            page++;
+            loadMoreAdData(page);
+        } 
+
+    }); 
+    
+</script>
+
 </body>
 
 
