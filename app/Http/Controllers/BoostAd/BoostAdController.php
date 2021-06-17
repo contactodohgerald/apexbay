@@ -35,14 +35,14 @@ class BoostAdController extends Controller
 
         }
 
+        if($request->ajax()){
+            $boost_views = view('front_end.boost_ads_data', compact('boosted_ads'))->render();
+            return response()->json(['html'=>$boost_views]);
+        }   
+
         $view = [
             'boosted_ads'=>$boosted_ads,
         ];
-
-        if($request->ajax()){
-            $views = view('front_end.boost_ads_data', compact('boosted_ads'))->render();
-            return response()->json(['html'=>$views]);
-        }   
 
         return view('front_end.boost_ads', $view);
     }

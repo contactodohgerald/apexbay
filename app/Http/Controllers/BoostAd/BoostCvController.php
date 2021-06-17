@@ -35,14 +35,14 @@ class BoostCvController extends Controller
 
         }
 
+        if($request->ajax()){
+            $boost_views = view('front_end.boost_cvs_data', compact('boosted_cvs'))->render();
+            return response()->json(['html'=>$boost_views]);
+        }   
+        
         $view = [
             'boosted_cvs'=>$boosted_cvs,
         ];
-
-        if($request->ajax()){
-            $views = view('front_end.boost_cvs_data', compact('boosted_cvs'))->render();
-            return response()->json(['html'=>$views]);
-        }   
 
         return view('front_end.boost_cvs', $view);
     }

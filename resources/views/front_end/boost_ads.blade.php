@@ -116,35 +116,19 @@
   @include('include.e_script')
 
   <script>
-    function loadMoreBoostadsData(page){
-        $.ajax({
-            url:'?page=' + page,
-            type:'get',
-            beforeSend: function(){
-                $('.ajax-load').show();
-            }
-        })
-        .done(function(data){
-            if(data.html == ""){
-              $('.ajax-load').html("No more records found");
-              return;
-            }
-          $('.ajax-load').hide();
-          $("#boost-ads-data").append(data.html);
-          console.log(data); return;
-        })
-        .fail(function(jqXHR, ajaxOptions, thrownError){
-            $('.ajax-load').html("Server no responding...");
-        });
-    } 
 
+   var ENDPOINT = "{{ url('/') }}"
     var page = 1;
-    $(window).scroll(function(){
-        if($(window).scrollTop() + $(window).height() >= $(document).height()){
+    $(window).scroll(function() {
+        
+        if (elementInViewport2(document.querySelector('#theFooter'))) {
+            // The element is visible, do something
             page++;
-            loadMoreBoostadsData(page);
-        }
-    });
+            loadBoostAdsData(page);
+        } 
+
+    }); 
+
 </script>
 
 </body>

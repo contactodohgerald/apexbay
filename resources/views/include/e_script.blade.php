@@ -93,6 +93,51 @@ function loadMoreCvData(page){
         $('.ajax-load-cv').html("Server no responding...");
     });
 } 
+
+function loadMoreBoostadsData(page){
+    $.ajax({
+        url: ENDPOINT + "/boost-cv?page=" + page,
+        type:'get',
+        beforeSend: function(){
+            $('.ajax-load').show();
+        }
+    })
+    .done(function(data){
+        if(data.html == ""){
+            $('.ajax-load').html("No more records found");
+            return;
+        }
+        $('.ajax-load').hide();
+        $("#boost-ads-data").append(data.html);
+        console.log(data); return;
+    })
+    .fail(function(jqXHR, ajaxOptions, thrownError){
+        $('.ajax-load').html("Server no responding...");
+    });
+} 
+
+function loadBoostAdsData(page){
+    $.ajax({
+        url: ENDPOINT + "/boost-ad?page=" + page,
+        type:'get',
+        beforeSend: function(){
+            $('.ajax-load').show();
+        }
+    })
+    .done(function(data){
+        if(data.html == ""){
+            $('.ajax-load').html("No more records found");
+            return;
+        }
+        $('.ajax-load').hide();
+        $("#boost-ads-data").append(data.html);
+        console.log(data); return;
+    })
+    .fail(function(jqXHR, ajaxOptions, thrownError){
+        $('.ajax-load').html("Server no responding...");
+    });
+} 
+
 </script>
 
 <script>
