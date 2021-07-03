@@ -95,6 +95,40 @@
                                                         </div>
                                                     </div>
                                                 @endforeach
+
+                                            @elseif (count($cv_search_result) > 0)
+
+                                                @foreach ($cv_search_result as $each_search_cv_result)
+                                                    <div class="card shadow rounded custom-card">
+                                                        <div class="row g-0">
+                                                            <div class="col-4 col-lg-3">
+                                                                <a href="{{route('cv-details', $each_search_cv_result->unique_id)}}">
+                                                                    <img src="{{asset('storage/cover_image/'.$each_search_cv_result->cover_image)}}" class="img-fluid imageFit" alt="{{env('APP_NAME')}}">
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-8 col-lg-9">
+                                                                <div class="card-body">
+                                                                    <h5 class="card-title no-margin-bottom textBlack">
+                                                                        <a href="{{route('cv-details', $each_search_cv_result->unique_id)}}">{{ucfirst($each_search_cv_result->full_name)}}</a>
+                                                                    </h5>
+                                                                    <p class="card-text">
+                                                                        <small class="text-danger font-bold">- {{ ucfirst($each_search_cv_result->users->name) }}</small>
+                                                                    </p>
+                                                                    <p class="font14"><b>{{$each_search_cv_result->cv_category_unique_id}}</p>
+                                                                    <p class="font14"><b>Job Type:</b> {{ ($each_search_cv_result->job_type == 'full_time')?'Full Time':'Part Time' }}</p>
+                                                                    <p class="card-text text-primary font-bold">₦ {{number_format($each_search_cv_result->price1)}} - {{number_format($each_search_cv_result->price2)}}</p>
+                                                                    
+                                                                    <div class="like-comm">
+                                                                        <small class="text-muted"><i class="fa fa-eye"></i>{{$each_search_cv_result->views}} views</small>
+                                                                        <small class="text-muted"><i class="fa fa-circle font-size-half"></i>{{$each_search_cv_result->created_at->diffForHumans()}}</small> 
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+
                                             @else
                                                 <div class="alert alert-success text-center mt-5">
                                                     <h3>There is no result for the searched query, browse through our other similiar Products / Services</h3>

@@ -30,12 +30,11 @@ class SearchQueryController extends Controller
         }
         $ads_search_result = $query->get();
         $cv_query = Cv::query();
-        $cv_columns = ['full_name', 'job_type', 'language', 'native'];
+        $cv_columns = ['full_name', 'job_type', 'language', 'native', 'skills', 'cv_category_unique_id']; 
         foreach($cv_columns as $single_column){
             $cv_query->orWhere($single_column, 'LIKE', '%' . $request->search_records . '%');
         }
         $cv_search_result = $cv_query->get();
-
         $cvs = $this->cv->getCvByPaginate(10,[
             ['status', '=', 'confirm'],
         ]);
@@ -85,7 +84,6 @@ class SearchQueryController extends Controller
             $each_ads->users;
            
         }
-
 
         $views = [
             'search'=>$search,
