@@ -114,6 +114,14 @@
                                                             </div>
                                                         </div>
 
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <input type="checkbox" required class="">
+                                                                <span>I agree to the <a class="text-danger" href="{{ route('disclaimer') }}">Terms</a> </span>
+                                                            </div>
+                                                        </div>
+
+
                                                         <div class="form-group">
                                                             <button type="submit" class="btn btn_apply w-100 btn-danger">Sign Up</button>
                                                         </div>

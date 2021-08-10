@@ -35,6 +35,10 @@ Route::get('/about-us', function () {
     return view('front_end.about_us');
 })->name('about-us');
 
+Route::get('/disclaimer', function () {
+    return view('front_end.disclaimer');
+})->name('disclaimer');
+
 //front-end
 Route::group(['middleware' => 'web'], function () {
     Route::get('/', [AdControllerHandler::class, 'indexPage'])->name('/'); 
