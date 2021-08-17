@@ -50,8 +50,8 @@
                                 <div class="card">
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs profile-tab" role="tablist">
-                                        <li class="nav-item"> <a class="nav-link active" href="{{ '/' }}">Products & Services</a> </li>
                                         <li class="nav-item"> <a class="nav-link" href="{{ route('index-page') }}">Seeking Work - CVs</a> </li>
+                                        <li class="nav-item"> <a class="nav-link active" href="{{ '/' }}">Products & Services</a> </li>
                                     </ul>
                                     <!-- Tab panes -->
                                     <div class="tab-content">
@@ -75,7 +75,7 @@
                                                                                 </div>
                                                                                 <div class="col-md-12">
                                                                                 <h2 class="mt-2 mb-3" style="text-align:center;">
-                                                                                    <a href="javascript:;"  style="color:#fff">{{$each_ads->phone_number}} </a>
+                                                                                    <a href="tel:{{$each_ads->phone_number}}"  style="color:#fff">{{$each_ads->phone_number}} </a>
                                                                                 </h2>
                                                                                 </div>
                                                                             </div>
@@ -119,7 +119,7 @@
                                                                                 </div>
                                                                                 <div class="col-md-12">
                                                                                 <h2 class="mt-2 mb-3" style="text-align:center;">
-                                                                                    <a href="javascript:;"  style="color:#fff">{{$each_ads->phone_number}} </a>
+                                                                                    <a href="tel:{{ $each_ads->phone_number }}"  style="color:#fff">{{$each_ads->phone_number}} </a>
                                                                                 </h2>
                                                                                 </div>
                                                                             </div>
