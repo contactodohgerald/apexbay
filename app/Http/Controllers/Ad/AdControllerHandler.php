@@ -34,7 +34,7 @@ class AdControllerHandler extends Controller
         $this->BoostCv = $BoostCv;
     } 
 
-    public function indexPage(Request $request){
+    public function indexPage2(Request $request){
         $adCategory = $this->adCategory->getAllAdCategory([
             ['status', '=', 'confirm'],
         ]);
@@ -108,7 +108,7 @@ class AdControllerHandler extends Controller
         return view('front_end.index', $view);
     } 
 
-    public function indexPage2(Request $request){
+    public function indexPage(Request $request){
 
         $cvs = $this->cv->getCvByPaginate(5,[
             ['status', '=', 'confirm'],

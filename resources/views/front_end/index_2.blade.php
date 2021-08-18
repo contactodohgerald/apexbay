@@ -50,8 +50,8 @@
                                 <div class="card">
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs profile-tab" role="tablist">
-                                        <li class="nav-item"> <a class="nav-link active" href="{{ route('index-page') }}">Seeking Work - CVs</a> </li>
-                                        <li class="nav-item"> <a class="nav-link" href="{{ '/' }}">Products & Services</a> </li>
+                                        <li class="nav-item"> <a class="nav-link active" href="{{ '/' }}">Seeking Work - CVs</a> </li>
+                                        <li class="nav-item"> <a class="nav-link" href="{{ route('index-page') }}">Products & Services</a> </li>
                                     </ul>
                                     <!-- Tab panes -->
                                     <div class="tab-content">
