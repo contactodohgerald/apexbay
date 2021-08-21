@@ -92,7 +92,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <a  href="https://api.whatsapp.com/send?phone={{$ad->whatsapp_phone}}" type="button" class="btn btn-success m-t-10 full-width green_bg" {{ ($ad->whatsapp_phone == null || $ad->whatsapp_phone == '')?'hidden':'' }}> <i class="fa fa-whatsapp"></i> {{$ad->whatsapp_phone}} 
+                                                        <a  href="https://wa.me/234{{substr($ad->whatsapp_phone, 1)}}" type="button" class="btn btn-success m-t-10 full-width green_bg" {{ ($ad->whatsapp_phone == null || $ad->whatsapp_phone == '')?'hidden':'' }}> <i class="fa fa-whatsapp"></i> {{$ad->whatsapp_phone}} 
                                                             <object class="btn-svg" data="images/svg/whatsapp.svg" width="20" height="20"> </object>
                                                         </a>
                                                         <br>
