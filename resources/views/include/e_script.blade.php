@@ -54,7 +54,7 @@ function elementInViewport2(el) {
 
 function loadMoreAdData(page){
     $.ajax({
-        url: ENDPOINT + "?page=" + page,
+        url: ENDPOINT + "/index-page?page=" + page,
         type:'get',
         beforeSend: function(){
             $('.ajax-load').show();
@@ -75,7 +75,7 @@ function loadMoreAdData(page){
 
 function loadMoreCvData(page){
     $.ajax({
-        url: ENDPOINT + "/index-page?page=" + page,
+        url: ENDPOINT + "?page=" + page,
         type:'get',
         beforeSend: function(){
             $('.ajax-load-cv').show();
